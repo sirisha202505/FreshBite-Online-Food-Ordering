@@ -5,12 +5,10 @@
 
 
 /* ============================================
-   FOOD DATA - 36 ITEMS
+   FOOD DATA
 ============================================ */
 
 const foodItems = [
-
-    /* ---------- PIZZA ---------- */
 
     {
         id: 1,
@@ -18,494 +16,273 @@ const foodItems = [
         price: 299,
         category: "Pizza",
         dietary: "veg",
-        emoji: "🍕",
-        description: "Fresh tomato, mozzarella cheese and basil."
+        description: "Fresh tomato, mozzarella cheese and basil.",
+        image: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=600&q=80"
     },
 
     {
         id: 2,
-        name: "Farmhouse Pizza",
+        name: "Corn Cheese Pizza",
         price: 349,
         category: "Pizza",
         dietary: "veg",
-        emoji: "🍕",
-        description: "Loaded with fresh vegetables and mozzarella."
+        description: "Sweet corn, mozzarella cheese and fresh herbs.",
+        image: "https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=600&q=80"
     },
 
     {
         id: 3,
-        name: "Paneer Tikka Pizza",
-        price: 379,
+        name: "Chicken Pizza",
+        price: 399,
         category: "Pizza",
-        dietary: "veg",
-        emoji: "🍕",
-        description: "Spicy paneer tikka with onions and capsicum."
+        dietary: "nonveg",
+        description: "Juicy chicken, cheese and delicious pizza sauce.",
+        image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=600&q=80"
     },
 
     {
         id: 4,
-        name: "Corn Pizza",
-        price: 329,
-        category: "Pizza",
-        dietary: "veg",
-        emoji: "🌽",
-        description: "Sweet corn, cheese and fresh vegetables."
+        name: "Chicken Burger",
+        price: 249,
+        category: "Burger",
+        dietary: "nonveg",
+        description: "Crispy chicken patty with lettuce and cheese.",
+        image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80"
     },
 
     {
         id: 5,
-        name: "Chicken Pizza",
-        price: 429,
-        category: "Pizza",
-        dietary: "nonveg",
-        emoji: "🍗",
-        description: "Tender chicken pieces with mozzarella cheese."
+        name: "Veg Cheese Burger",
+        price: 199,
+        category: "Burger",
+        dietary: "veg",
+        description: "Crispy vegetable patty with cheese and fresh vegetables.",
+        image: "https://images.unsplash.com/photo-1520072959219-c595dc870360?auto=format&fit=crop&w=600&q=80"
     },
 
     {
         id: 6,
-        name: "BBQ Chicken Pizza",
-        price: 449,
-        category: "Pizza",
+        name: "Chicken Wings",
+        price: 299,
+        category: "Chicken",
         dietary: "nonveg",
-        emoji: "🍕",
-        description: "Smoky BBQ chicken with melted cheese."
+        description: "Crispy spicy chicken wings served with dip.",
+        image: "https://images.unsplash.com/photo-1527477396000-e27163b481c2?auto=format&fit=crop&w=600&q=80"
     },
-
-
-    /* ---------- BURGERS ---------- */
 
     {
         id: 7,
-        name: "Veggie Burger",
-        price: 179,
-        category: "Burgers",
-        dietary: "veg",
-        emoji: "🍔",
-        description: "Crispy vegetable patty with fresh lettuce."
+        name: "Chicken Strips",
+        price: 279,
+        category: "Chicken",
+        dietary: "nonveg",
+        description: "Golden crispy chicken strips with special sauce.",
+        image: "https://images.unsplash.com/photo-1562967916-eb82221dfb92?auto=format&fit=crop&w=600&q=80"
     },
 
     {
         id: 8,
-        name: "Chicken Burger",
+        name: "Chocolate Cake",
         price: 199,
-        category: "Burgers",
-        dietary: "nonveg",
-        emoji: "🍔",
-        description: "Juicy chicken patty with fresh vegetables."
+        category: "Dessert",
+        dietary: "veg",
+        description: "Soft chocolate cake with rich chocolate topping.",
+        image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80"
     },
 
     {
         id: 9,
-        name: "Cheese Burger",
-        price: 229,
-        category: "Burgers",
+        name: "Brownie",
+        price: 149,
+        category: "Dessert",
         dietary: "veg",
-        emoji: "🍔",
-        description: "Classic burger with delicious melted cheese."
+        description: "Warm chocolate brownie with a soft centre.",
+        image: "https://images.unsplash.com/photo-1564355808539-22fda35bed7e?auto=format&fit=crop&w=600&q=80"
     },
 
     {
         id: 10,
-        name: "Chicken Wings Burger",
-        price: 299,
-        category: "Burgers",
-        dietary: "nonveg",
-        emoji: "🍗",
-        description: "Crispy chicken wings with burger and special sauce."
+        name: "Fresh Lime",
+        price: 99,
+        category: "Drinks",
+        dietary: "veg",
+        description: "Refreshing fresh lime drink.",
+        image: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=600&q=80"
     },
 
     {
         id: 11,
-        name: "Paneer Burger",
-        price: 249,
-        category: "Burgers",
+        name: "Cold Coffee",
+        price: 129,
+        category: "Drinks",
         dietary: "veg",
-        emoji: "🍔",
-        description: "Spicy paneer patty with fresh vegetables."
+        description: "Creamy chilled coffee with a rich flavour.",
+        image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=600&q=80"
     },
 
     {
         id: 12,
-        name: "Double Chicken Burger",
-        price: 329,
-        category: "Burgers",
-        dietary: "nonveg",
-        emoji: "🍔",
-        description: "Double chicken patties with creamy sauce."
-    },
-
-
-    /* ---------- PASTA ---------- */
-
-    {
-        id: 13,
-        name: "White Sauce Pasta",
-        price: 249,
-        category: "Pasta",
+        name: "Paneer Pizza",
+        price: 379,
+        category: "Pizza",
         dietary: "veg",
-        emoji: "🍝",
-        description: "Creamy pasta with herbs and vegetables."
-    },
-
-    {
-        id: 14,
-        name: "Red Sauce Pasta",
-        price: 229,
-        category: "Pasta",
-        dietary: "vegan",
-        emoji: "🍝",
-        description: "Italian pasta with fresh tomato sauce."
-    },
-
-    {
-        id: 15,
-        name: "Pesto Pasta",
-        price: 279,
-        category: "Pasta",
-        dietary: "veg",
-        emoji: "🍝",
-        description: "Pasta tossed with fresh basil pesto."
-    },
-
-    {
-        id: 16,
-        name: "Chicken Pasta",
-        price: 319,
-        category: "Pasta",
-        dietary: "nonveg",
-        emoji: "🍗",
-        description: "Creamy pasta with grilled chicken pieces."
-    },
-
-    {
-        id: 17,
-        name: "Cheesy Pasta",
-        price: 289,
-        category: "Pasta",
-        dietary: "veg",
-        emoji: "🧀",
-        description: "Delicious pasta loaded with melted cheese."
-    },
-
-    {
-        id: 18,
-        name: "Arrabbiata Pasta",
-        price: 259,
-        category: "Pasta",
-        dietary: "vegan",
-        emoji: "🍝",
-        description: "Spicy tomato pasta with garlic and herbs."
-    },
-
-
-    /* ---------- INDIAN ---------- */
-
-    {
-        id: 19,
-        name: "Chicken Biryani",
-        price: 299,
-        category: "Indian",
-        dietary: "nonveg",
-        emoji: "🍛",
-        description: "Aromatic basmati rice with spicy chicken."
-    },
-
-    {
-        id: 20,
-        name: "Veg Biryani",
-        price: 249,
-        category: "Indian",
-        dietary: "veg",
-        emoji: "🍛",
-        description: "Fragrant rice cooked with fresh vegetables."
-    },
-
-    {
-        id: 21,
-        name: "Paneer Butter Masala",
-        price: 279,
-        category: "Indian",
-        dietary: "veg",
-        emoji: "🍛",
-        description: "Soft paneer cooked in creamy tomato gravy."
-    },
-
-    {
-        id: 22,
-        name: "Chicken Tikka",
-        price: 329,
-        category: "Indian",
-        dietary: "nonveg",
-        emoji: "🍗",
-        description: "Juicy chicken pieces grilled with Indian spices."
-    },
-
-    {
-        id: 23,
-        name: "Mutton Biryani",
-        price: 399,
-        category: "Indian",
-        dietary: "nonveg",
-        emoji: "🍖",
-        description: "Flavourful basmati rice cooked with tender mutton."
-    },
-
-    {
-        id: 24,
-        name: "Dal Tadka",
-        price: 199,
-        category: "Indian",
-        dietary: "vegan",
-        emoji: "🍛",
-        description: "Yellow lentils tempered with aromatic spices."
-    },
-
-
-    /* ---------- HEALTHY ---------- */
-
-    {
-        id: 25,
-        name: "Fresh Veg Salad",
-        price: 179,
-        category: "Healthy",
-        dietary: "vegan",
-        emoji: "🥗",
-        description: "Healthy vegetables with fresh dressing."
-    },
-
-    {
-        id: 26,
-        name: "Fruit Bowl",
-        price: 199,
-        category: "Healthy",
-        dietary: "vegan",
-        emoji: "🍓",
-        description: "Fresh seasonal fruits served in a healthy bowl."
-    },
-
-    {
-        id: 27,
-        name: "Greek Salad",
-        price: 229,
-        category: "Healthy",
-        dietary: "veg",
-        emoji: "🥗",
-        description: "Fresh vegetables with olives and feta cheese."
-    },
-
-    {
-        id: 28,
-        name: "Avocado Toast",
-        price: 249,
-        category: "Healthy",
-        dietary: "vegan",
-        emoji: "🥑",
-        description: "Creamy avocado served on toasted bread."
-    },
-
-    {
-        id: 29,
-        name: "Chicken Salad",
-        price: 279,
-        category: "Healthy",
-        dietary: "nonveg",
-        emoji: "🥗",
-        description: "Fresh vegetables with grilled chicken."
-    },
-
-    {
-        id: 30,
-        name: "Veg Sandwich",
-        price: 189,
-        category: "Healthy",
-        dietary: "veg",
-        emoji: "🥪",
-        description: "Fresh vegetables layered inside toasted bread."
-    },
-
-
-    /* ---------- DESSERTS ---------- */
-
-    {
-        id: 31,
-        name: "Chocolate Cake",
-        price: 149,
-        category: "Desserts",
-        dietary: "veg",
-        emoji: "🍰",
-        description: "Soft chocolate cake with creamy frosting."
-    },
-
-    {
-        id: 32,
-        name: "Red Velvet Cake",
-        price: 179,
-        category: "Desserts",
-        dietary: "veg",
-        emoji: "🍰",
-        description: "Soft red velvet cake with cream cheese frosting."
-    },
-
-    {
-        id: 33,
-        name: "Chocolate Brownie",
-        price: 129,
-        category: "Desserts",
-        dietary: "veg",
-        emoji: "🍫",
-        description: "Rich and fudgy chocolate brownie."
-    },
-
-    {
-        id: 34,
-        name: "Vanilla Ice Cream",
-        price: 119,
-        category: "Desserts",
-        dietary: "veg",
-        emoji: "🍨",
-        description: "Creamy vanilla ice cream with smooth texture."
-    },
-
-    {
-        id: 35,
-        name: "Chocolate Ice Cream",
-        price: 139,
-        category: "Desserts",
-        dietary: "veg",
-        emoji: "🍨",
-        description: "Rich chocolate ice cream for chocolate lovers."
-    },
-
-    {
-        id: 36,
-        name: "Fruit Ice Cream",
-        price: 159,
-        category: "Desserts",
-        dietary: "veg",
-        emoji: "🍨",
-        description: "Refreshing ice cream with delicious fruit flavours."
+        description: "Soft paneer, capsicum, onion and mozzarella.",
+        image: "https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=600&q=80"
     }
 
 ];
 
 
 /* ============================================
-   CART DATA
+   CART
 ============================================ */
 
-let cart =
-    JSON.parse(localStorage.getItem("freshBiteCart")) || [];
+let cart = [];
 
 
 /* ============================================
-   SAVE CART
+   DISPLAY FOOD
 ============================================ */
 
-function saveCart() {
-
-    localStorage.setItem(
-        "freshBiteCart",
-        JSON.stringify(cart)
-    );
-
-}
-
-
-/* ============================================
-   DISPLAY FOOD ITEMS
-============================================ */
-
-function displayFoodItems(items = foodItems) {
+function displayFood(items) {
 
     const foodContainer =
-        document.getElementById("food-container");
-
-    if (!foodContainer) {
-        return;
-    }
+        document.getElementById("foodContainer");
 
     foodContainer.innerHTML = "";
 
 
-    items.forEach(function(item) {
+    if (items.length === 0) {
 
-        const foodCard =
-            document.createElement("div");
+        foodContainer.innerHTML =
+            "<p>No food items found.</p>";
 
-        foodCard.className = "food-card";
-
-        foodCard.dataset.category =
-            item.dietary;
+        return;
+    }
 
 
-        let tagText = "";
-        let tagClass = "";
+    items.forEach(item => {
+
+        const card = document.createElement("div");
+
+        card.className = "food-card";
 
 
-        if (item.dietary === "veg") {
+        card.innerHTML = `
 
-            tagText = "Veg";
-            tagClass = "veg";
-
-        } else if (item.dietary === "nonveg") {
-
-            tagText = "Non-Veg";
-            tagClass = "nonveg";
-
-        } else {
-
-            tagText = "Vegan";
-            tagClass = "vegan";
-
-        }
-
-
-        foodCard.innerHTML = `
-
-            <div class="food-image">
-                ${item.emoji}
-            </div>
+            <img src="${item.image}" alt="${item.name}">
 
             <div class="food-info">
 
-                <span class="food-tag ${tagClass}">
-                    ${tagText}
-                </span>
+                <h3>${item.name}</h3>
 
-                <h3>
-                    ${item.name}
-                </h3>
+                <p>${item.description}</p>
 
-                <p>
-                    ${item.description}
-                </p>
-
-                <div class="food-bottom">
+                <div class="food-meta">
 
                     <span class="price">
                         ₹${item.price}
                     </span>
 
-                    <button
-                        class="add-btn"
-                        type="button"
-                        onclick="addToCart(${item.id})">
-
-                        + Add
-
-                    </button>
+                    <span class="diet-tag ${item.dietary}">
+                        ${item.dietary === "veg"
+                            ? "🟢 Veg"
+                            : "🔴 Non-Veg"}
+                    </span>
 
                 </div>
+
+                <button class="add-btn"
+                        onclick="addToCart(${item.id})">
+
+                    <i class="fas fa-cart-plus"></i>
+                    Add to Cart
+
+                </button>
 
             </div>
 
         `;
 
 
-        foodContainer.appendChild(foodCard);
+        foodContainer.appendChild(card);
 
     });
+
+}
+
+
+/* ============================================
+   INITIAL DISPLAY
+============================================ */
+
+displayFood(foodItems);
+
+
+/* ============================================
+   CATEGORY FILTER
+============================================ */
+
+function filterFood(category) {
+
+    if (category === "all") {
+
+        displayFood(foodItems);
+
+        return;
+    }
+
+
+    const filteredItems =
+        foodItems.filter(item =>
+            item.category === category
+        );
+
+
+    displayFood(filteredItems);
+
+    document
+        .getElementById("menu")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+
+}
+
+
+/* ============================================
+   DIETARY FILTER
+============================================ */
+
+function filterDiet(diet) {
+
+    const buttons =
+        document.querySelectorAll(".diet-filters button");
+
+
+    buttons.forEach(button =>
+        button.classList.remove("active")
+    );
+
+
+    event.target.classList.add("active");
+
+
+    if (diet === "all") {
+
+        displayFood(foodItems);
+
+        return;
+    }
+
+
+    const filteredItems =
+        foodItems.filter(item =>
+            item.dietary === diet
+        );
+
+
+    displayFood(filteredItems);
 
 }
 
@@ -517,16 +294,15 @@ function displayFoodItems(items = foodItems) {
 function addToCart(itemId) {
 
     const item =
-        foodItems.find(food => food.id === itemId);
-
-
-    if (!item) {
-        return;
-    }
+        foodItems.find(food =>
+            food.id === itemId
+        );
 
 
     const existingItem =
-        cart.find(cartItem => cartItem.id === itemId);
+        cart.find(food =>
+            food.id === itemId
+        );
 
 
     if (existingItem) {
@@ -536,29 +312,17 @@ function addToCart(itemId) {
     } else {
 
         cart.push({
-
-            id: item.id,
-
-            name: item.name,
-
-            price: item.price,
-
+            ...item,
             quantity: 1
-
         });
 
     }
 
 
-    saveCart();
-
     updateCart();
 
 
-    alert(
-        item.name +
-        " added to cart!"
-    );
+    alert(`${item.name} added to cart!`);
 
 }
 
@@ -570,48 +334,38 @@ function addToCart(itemId) {
 function updateCart() {
 
     const cartContainer =
-        document.getElementById("cart-container");
-
-    const cartTotal =
-        document.getElementById("cart-total");
+        document.getElementById("cartItems");
 
 
-    if (!cartContainer || !cartTotal) {
-        return;
-    }
+    const cartCount =
+        document.getElementById("cartCount");
 
 
     cartContainer.innerHTML = "";
 
 
+    let subtotal = 0;
+
+    let totalQuantity = 0;
+
+
     if (cart.length === 0) {
 
-        cartContainer.innerHTML = `
+        cartContainer.innerHTML =
+            `<p class="empty-cart">
+                Your cart is empty 🛒
+            </p>`;
 
-            <p class="empty-cart">
-                Your cart is empty.
-            </p>
-
-        `;
-
-        cartTotal.textContent = "0";
-
-        updateCartCount();
-
-        return;
     }
 
 
-    let total = 0;
+    cart.forEach(item => {
 
-
-    cart.forEach(function(item) {
-
-        const itemTotal =
+        subtotal +=
             item.price * item.quantity;
 
-
-        total += itemTotal;
+        totalQuantity +=
+            item.quantity;
 
 
         const cartItem =
@@ -624,57 +378,42 @@ function updateCart() {
 
         cartItem.innerHTML = `
 
+            <img src="${item.image}"
+                 alt="${item.name}">
+
             <div class="cart-item-info">
 
-                <h3>
-                    ${item.name}
-                </h3>
+                <h3>${item.name}</h3>
 
-                <p>
-                    ₹${item.price} × ${item.quantity}
-                </p>
+                <p>₹${item.price}</p>
 
             </div>
 
 
             <div class="quantity-controls">
 
-                <button
-                    type="button"
-                    onclick="decreaseQuantity(${item.id})">
-
-                    −
-
+                <button onclick="changeQuantity(${item.id}, -1)">
+                    -
                 </button>
 
-                <span>
-                    ${item.quantity}
-                </span>
+                <span>${item.quantity}</span>
 
-                <button
-                    type="button"
-                    onclick="increaseQuantity(${item.id})">
-
+                <button onclick="changeQuantity(${item.id}, 1)">
                     +
-
                 </button>
 
             </div>
 
 
-            <strong class="cart-item-total">
-
-                ₹${itemTotal}
-
+            <strong>
+                ₹${item.price * item.quantity}
             </strong>
 
 
-            <button
-                type="button"
-                class="remove-btn"
-                onclick="removeFromCart(${item.id})">
+            <button class="remove-btn"
+                    onclick="removeFromCart(${item.id})">
 
-                Remove
+                <i class="fas fa-trash"></i>
 
             </button>
 
@@ -686,104 +425,56 @@ function updateCart() {
     });
 
 
-    cartTotal.textContent = total;
-
-    updateCartCount();
-
-}
+    cartCount.textContent =
+        totalQuantity;
 
 
-/* ============================================
-   CART COUNT
-============================================ */
-
-function updateCartCount() {
-
-    const cartCounts =
-        document.querySelectorAll(".cart-count");
+    document.getElementById("subtotal")
+        .textContent = `₹${subtotal}`;
 
 
-    const totalQuantity =
-        cart.reduce(
-            function(total, item) {
-
-                return total + item.quantity;
-
-            },
-            0
-        );
+    const deliveryFee =
+        cart.length > 0 ? 40 : 0;
 
 
-    cartCounts.forEach(function(count) {
+    document.getElementById("deliveryFee")
+        .textContent = `₹${deliveryFee}`;
 
-        count.textContent =
-            totalQuantity;
 
-    });
+    document.getElementById("totalPrice")
+        .textContent =
+        `₹${subtotal + deliveryFee}`;
 
 }
 
 
 /* ============================================
-   INCREASE QUANTITY
+   CHANGE QUANTITY
 ============================================ */
 
-function increaseQuantity(itemId) {
+function changeQuantity(itemId, change) {
 
     const item =
-        cart.find(
-            cartItem =>
-                cartItem.id === itemId
+        cart.find(food =>
+            food.id === itemId
         );
 
 
-    if (item) {
-
-        item.quantity++;
-
-        saveCart();
-
-        updateCart();
-
-    }
-
-}
+    if (!item) return;
 
 
-/* ============================================
-   DECREASE QUANTITY
-============================================ */
-
-function decreaseQuantity(itemId) {
-
-    const item =
-        cart.find(
-            cartItem =>
-                cartItem.id === itemId
-        );
+    item.quantity += change;
 
 
-    if (!item) {
-        return;
-    }
-
-
-    if (item.quantity > 1) {
-
-        item.quantity--;
-
-    } else {
+    if (item.quantity <= 0) {
 
         cart =
-            cart.filter(
-                cartItem =>
-                    cartItem.id !== itemId
+            cart.filter(food =>
+                food.id !== itemId
             );
 
     }
 
-
-    saveCart();
 
     updateCart();
 
@@ -796,84 +487,13 @@ function decreaseQuantity(itemId) {
 
 function removeFromCart(itemId) {
 
-    const item =
-        cart.find(
-            cartItem =>
-                cartItem.id === itemId
-        );
-
-
     cart =
-        cart.filter(
-            cartItem =>
-                cartItem.id !== itemId
+        cart.filter(item =>
+            item.id !== itemId
         );
 
-
-    saveCart();
 
     updateCart();
-
-
-    if (item) {
-
-        alert(
-            item.name +
-            " removed from cart."
-        );
-
-    }
-
-}
-
-
-/* ============================================
-   FOOD FILTER
-============================================ */
-
-function filterFood(category, event) {
-
-    const foodCards =
-        document.querySelectorAll(".food-card");
-
-    const filterButtons =
-        document.querySelectorAll(".filter-btn");
-
-
-    filterButtons.forEach(function(button) {
-
-        button.classList.remove("active");
-
-    });
-
-
-    if (event && event.currentTarget) {
-
-        event.currentTarget.classList.add("active");
-
-    }
-
-
-    foodCards.forEach(function(card) {
-
-        const cardCategory =
-            card.dataset.category;
-
-
-        if (
-            category === "all" ||
-            cardCategory === category
-        ) {
-
-            card.style.display = "";
-
-        } else {
-
-            card.style.display = "none";
-
-        }
-
-    });
 
 }
 
@@ -886,184 +506,64 @@ function goToCheckout() {
 
     if (cart.length === 0) {
 
-        alert(
-            "Your cart is empty. " +
-            "Please add food items first."
-        );
+        alert("Your cart is empty. Please add some food first!");
 
         return;
     }
 
 
-    const checkoutSection =
-        document.getElementById("checkout");
-
-
-    if (checkoutSection) {
-
-        checkoutSection.scrollIntoView({
+    document
+        .getElementById("checkout")
+        .scrollIntoView({
             behavior: "smooth"
         });
-
-    }
 
 }
 
 
 /* ============================================
-   CHECKOUT FORM
+   PLACE ORDER
 ============================================ */
 
-const checkoutForm =
-    document.getElementById("checkout-form");
+document
+    .getElementById("checkoutForm")
+    .addEventListener("submit", function(event) {
+
+        event.preventDefault();
 
 
-if (checkoutForm) {
+        if (cart.length === 0) {
 
-    checkoutForm.addEventListener(
-        "submit",
-        function(event) {
+            alert("Your cart is empty!");
 
-            event.preventDefault();
-
-
-            if (cart.length === 0) {
-
-                alert(
-                    "Please add items " +
-                    "to your cart first."
-                );
-
-                return;
-            }
-
-
-            const customerName =
-                document
-                    .getElementById("customer-name")
-                    .value
-                    .trim();
-
-
-            const customerEmail =
-                document
-                    .getElementById("customer-email")
-                    .value
-                    .trim();
-
-
-            const customerPhone =
-                document
-                    .getElementById("customer-phone")
-                    .value
-                    .trim();
-
-
-            const customerAddress =
-                document
-                    .getElementById("customer-address")
-                    .value
-                    .trim();
-
-
-            const deliveryTime =
-                document
-                    .getElementById("delivery-time")
-                    .value;
-
-
-            const paymentMethod =
-                document
-                    .getElementById("payment-method")
-                    .value;
-
-
-            if (
-                !customerName ||
-                !customerEmail ||
-                !customerPhone ||
-                !customerAddress ||
-                !deliveryTime ||
-                !paymentMethod
-            ) {
-
-                alert(
-                    "Please complete " +
-                    "all checkout details."
-                );
-
-                return;
-            }
-
-
-            let paymentMessage = "";
-
-
-            if (paymentMethod === "upi") {
-
-                paymentMessage =
-                    "UPI payment simulation successful.";
-
-            } else if (
-                paymentMethod === "card"
-            ) {
-
-                paymentMessage =
-                    "Card payment simulation successful.";
-
-            } else {
-
-                paymentMessage =
-                    "Cash on Delivery selected.";
-
-            }
-
-
-            alert(
-
-                "Order placed successfully!\n\n" +
-
-                "Thank you, " +
-                customerName +
-                "!\n\n" +
-
-                "Delivery: " +
-                deliveryTime +
-                "\n" +
-
-                "Payment: " +
-                paymentMessage
-
-            );
-
-
-            cart = [];
-
-            saveCart();
-
-            updateCart();
-
-            checkoutForm.reset();
-
-
-            const tracking =
-                document.getElementById(
-                    "order-tracking"
-                );
-
-
-            if (tracking) {
-
-                tracking.scrollIntoView({
-                    behavior: "smooth"
-                });
-
-                startOrderTracking();
-
-            }
-
+            return;
         }
-    );
+
+
+        document
+            .getElementById("successPopup")
+            .style.display = "flex";
+
+
+        cart = [];
+
+        updateCart();
+
+
+        this.reset();
+
+    });
+
+
+/* ============================================
+   CLOSE POPUP
+============================================ */
+
+function closePopup() {
+
+    document
+        .getElementById("successPopup")
+        .style.display = "none";
 
 }
 
@@ -1072,456 +572,50 @@ if (checkoutForm) {
    LOGIN
 ============================================ */
 
-const loginForm =
-    document.getElementById("login-form");
+document
+    .getElementById("loginForm")
+    .addEventListener("submit", function(event) {
+
+        event.preventDefault();
 
 
-if (loginForm) {
-
-    loginForm.addEventListener(
-        "submit",
-        function(event) {
-
-            event.preventDefault();
+        const email =
+            document.getElementById("email").value;
 
 
-            const email =
-                document
-                    .getElementById("login-email")
-                    .value
-                    .trim();
+        document
+            .getElementById("loginMessage")
+            .textContent =
+            `Welcome! Logged in as ${email}`;
 
+        this.reset();
 
-            const password =
-                document
-                    .getElementById("login-password")
-                    .value
-                    .trim();
-
-
-            if (!email || !password) {
-
-                alert(
-                    "Please enter " +
-                    "email and password."
-                );
-
-                return;
-            }
-
-
-            alert(
-                "Login successful!\n\n" +
-                "Welcome to FreshBite."
-            );
-
-
-            loginForm.reset();
-
-        }
-    );
-
-}
-
-
-/* ============================================
-   REGISTER
-============================================ */
-
-const registerForm =
-    document.getElementById("register-form");
-
-
-if (registerForm) {
-
-    registerForm.addEventListener(
-        "submit",
-        function(event) {
-
-            event.preventDefault();
-
-
-            const name =
-                document
-                    .getElementById("register-name")
-                    .value
-                    .trim();
-
-
-            const email =
-                document
-                    .getElementById("register-email")
-                    .value
-                    .trim();
-
-
-            const password =
-                document
-                    .getElementById("register-password")
-                    .value
-                    .trim();
-
-
-            if (!name || !email || !password) {
-
-                alert(
-                    "Please fill all " +
-                    "registration details."
-                );
-
-                return;
-            }
-
-
-            alert(
-                "Account created successfully!\n\n" +
-                "Welcome, " +
-                name +
-                "!"
-            );
-
-
-            registerForm.reset();
-
-        }
-    );
-
-}
+    });
 
 
 /* ============================================
    CONTACT FORM
 ============================================ */
 
-const contactForm =
-    document.getElementById("contact-form");
+document
+    .getElementById("contactForm")
+    .addEventListener("submit", function(event) {
+
+        event.preventDefault();
 
 
-if (contactForm) {
-
-    contactForm.addEventListener(
-        "submit",
-        function(event) {
-
-            event.preventDefault();
+        alert(
+            "Thank you! Your message has been sent successfully."
+        );
 
 
-            alert(
-                "Thank you for contacting " +
-                "FreshBite!\n\n" +
-                "We will get back to you soon."
-            );
+        this.reset();
 
-
-            contactForm.reset();
-
-        }
-    );
-
-}
+    });
 
 
 /* ============================================
-   RESTAURANT VIEW MENU
+   INITIAL CART
 ============================================ */
 
-function showRestaurantMenu(restaurantName) {
-
-    alert(
-        restaurantName +
-        " selected! Showing available menu items."
-    );
-
-
-    const menuSection =
-        document.getElementById("menu");
-
-
-    if (menuSection) {
-
-        menuSection.scrollIntoView({
-            behavior: "smooth"
-        });
-
-    }
-
-}
-
-
-/* ============================================
-   RESTAURANT FILTERS
-============================================ */
-
-function filterRestaurants() {
-
-    const cuisineFilter =
-        document.getElementById(
-            "cuisine-filter"
-        );
-
-    const ratingFilter =
-        document.getElementById(
-            "rating-filter"
-        );
-
-    const priceFilter =
-        document.getElementById(
-            "price-filter"
-        );
-
-
-    const restaurants =
-        document.querySelectorAll(
-            ".restaurant-card"
-        );
-
-
-    const noResults =
-        document.getElementById(
-            "no-restaurant-message"
-        );
-
-
-    if (
-        !cuisineFilter ||
-        !ratingFilter ||
-        !priceFilter
-    ) {
-
-        return;
-
-    }
-
-
-    const selectedCuisine =
-        cuisineFilter.value;
-
-
-    const selectedRating =
-        ratingFilter.value;
-
-
-    const selectedPrice =
-        priceFilter.value;
-
-
-    let visibleCount = 0;
-
-
-    restaurants.forEach(
-        function(restaurant) {
-
-            const restaurantCuisine =
-                restaurant.dataset.cuisine;
-
-
-            const restaurantRating =
-                parseFloat(
-                    restaurant.dataset.rating
-                );
-
-
-            const restaurantPrice =
-                restaurant.dataset.price;
-
-
-            const cuisineMatch =
-                selectedCuisine === "all" ||
-                restaurantCuisine ===
-                    selectedCuisine;
-
-
-            const ratingMatch =
-                selectedRating === "all" ||
-                restaurantRating >=
-                    parseFloat(selectedRating);
-
-
-            const priceMatch =
-                selectedPrice === "all" ||
-                restaurantPrice ===
-                    selectedPrice;
-
-
-            if (
-                cuisineMatch &&
-                ratingMatch &&
-                priceMatch
-            ) {
-
-                restaurant.style.display =
-                    "";
-
-                visibleCount++;
-
-            } else {
-
-                restaurant.style.display =
-                    "none";
-
-            }
-
-        }
-    );
-
-
-    if (noResults) {
-
-        if (visibleCount === 0) {
-
-            noResults.style.display =
-                "block";
-
-        } else {
-
-            noResults.style.display =
-                "none";
-
-        }
-
-    }
-
-}
-
-
-/* ============================================
-   RESET RESTAURANT FILTERS
-============================================ */
-
-function resetRestaurantFilters() {
-
-    const cuisineFilter =
-        document.getElementById(
-            "cuisine-filter"
-        );
-
-    const ratingFilter =
-        document.getElementById(
-            "rating-filter"
-        );
-
-    const priceFilter =
-        document.getElementById(
-            "price-filter"
-        );
-
-
-    if (cuisineFilter) {
-
-        cuisineFilter.value = "all";
-
-    }
-
-
-    if (ratingFilter) {
-
-        ratingFilter.value = "all";
-
-    }
-
-
-    if (priceFilter) {
-
-        priceFilter.value = "all";
-
-    }
-
-
-    filterRestaurants();
-
-}
-
-
-/* ============================================
-   ORDER TRACKING
-============================================ */
-
-function startOrderTracking() {
-
-    const trackingSteps =
-        document.querySelectorAll(
-            ".tracking-step"
-        );
-
-
-    if (trackingSteps.length === 0) {
-
-        return;
-
-    }
-
-
-    trackingSteps.forEach(
-        function(step, index) {
-
-            if (index === 0) {
-
-                step.classList.add("active");
-
-            } else {
-
-                step.classList.remove("active");
-
-            }
-
-        }
-    );
-
-
-    let currentStep = 1;
-
-
-    const interval =
-        setInterval(
-            function() {
-
-                if (
-                    currentStep >=
-                    trackingSteps.length
-                ) {
-
-                    clearInterval(interval);
-
-                    return;
-
-                }
-
-
-                trackingSteps[
-                    currentStep
-                ].classList.add("active");
-
-
-                currentStep++;
-
-
-                if (
-                    currentStep >=
-                    trackingSteps.length
-                ) {
-
-                    clearInterval(interval);
-
-                }
-
-            },
-            3000
-        );
-
-}
-
-
-/* ============================================
-   INITIALIZE WEBSITE
-============================================ */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function() {
-
-        displayFoodItems();
-
-        updateCart();
-
-    }
-);
+updateCart();
