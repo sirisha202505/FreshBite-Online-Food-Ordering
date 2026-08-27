@@ -97,91 +97,183 @@
     </section>
 
 
-    <!-- Restaurants -->
-    <section id="restaurants">
+  
+    <!-- =========================
+     RESTAURANTS
+========================== -->
 
-        <h2>Popular Restaurants</h2>
+<section id="restaurants">
 
-        <p class="section-description">
-            Order delicious food from our popular restaurants.
-        </p>
+    <h2>Popular Restaurants</h2>
 
-        <div class="restaurant-container">
+    <p class="section-description">
+        Find the perfect restaurant for your favourite meal.
+    </p>
 
-            <div class="restaurant-card">
+    <!-- Restaurant Filters -->
 
-                <div class="restaurant-image">
-                    🍕
-                </div>
+    <div class="restaurant-filters">
 
-                <div class="restaurant-info">
+        <select id="cuisine-filter" onchange="filterRestaurants()">
+            <option value="all">All Cuisines</option>
+            <option value="italian">Italian</option>
+            <option value="fastfood">Fast Food</option>
+            <option value="indian">Indian</option>
+        </select>
 
-                    <h3>Pizza House</h3>
+        <select id="rating-filter" onchange="filterRestaurants()">
+            <option value="all">All Ratings</option>
+            <option value="4.7">4.7+ Rating</option>
+            <option value="4.6">4.6+ Rating</option>
+            <option value="4.5">4.5+ Rating</option>
+        </select>
 
-                    <p>Italian • Pizza • Fast Food</p>
+        <select id="price-filter" onchange="filterRestaurants()">
+            <option value="all">All Prices</option>
+            <option value="1">₹ - Budget</option>
+            <option value="2">₹₹ - Moderate</option>
+            <option value="3">₹₹₹ - Premium</option>
+        </select>
 
-                    <span class="rating">⭐ 4.7</span>
-                    <span class="price-range">₹₹</span>
+        <button class="btn" onclick="resetRestaurantFilters()">
+            Reset Filters
+        </button>
 
-                    <button class="btn restaurant-btn">
-                        View Menu
-                    </button>
+    </div>
 
-                </div>
 
+    <!-- Restaurant Cards -->
+
+    <div class="restaurant-container" id="restaurant-container">
+
+
+        <!-- Pizza House -->
+
+        <div class="restaurant-card"
+             data-cuisine="italian"
+             data-rating="4.7"
+             data-price="2">
+
+            <div class="restaurant-image">
+                🍕
             </div>
 
+            <div class="restaurant-info">
 
-            <div class="restaurant-card">
+                <h3>Pizza House</h3>
 
-                <div class="restaurant-image">
-                    🍔
-                </div>
+                <p>
+                    Italian • Pizza • Fast Food
+                </p>
 
-                <div class="restaurant-info">
+                <span class="rating">
+                    ⭐ 4.7
+                </span>
 
-                    <h3>Burger Point</h3>
+                <span class="price-range">
+                    ₹₹
+                </span>
 
-                    <p>Burgers • Fast Food</p>
-
-                    <span class="rating">⭐ 4.5</span>
-                    <span class="price-range">₹₹</span>
-
-                    <button class="btn restaurant-btn">
-                        View Menu
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <div class="restaurant-card">
-
-                <div class="restaurant-image">
-                    🍛
-                </div>
-
-                <div class="restaurant-info">
-
-                    <h3>Spice Garden</h3>
-
-                    <p>Indian • Biryani • Curry</p>
-
-                    <span class="rating">⭐ 4.6</span>
-                    <span class="price-range">₹₹</span>
-
-                    <button class="btn restaurant-btn">
-                        View Menu
-                    </button>
-
-                </div>
+                <button
+                    class="btn restaurant-btn"
+                    onclick="showRestaurantMenu('Pizza House')">
+                    View Menu
+                </button>
 
             </div>
 
         </div>
 
-    </section>
+
+        <!-- Burger Point -->
+
+        <div class="restaurant-card"
+             data-cuisine="fastfood"
+             data-rating="4.5"
+             data-price="2">
+
+            <div class="restaurant-image">
+                🍔
+            </div>
+
+            <div class="restaurant-info">
+
+                <h3>Burger Point</h3>
+
+                <p>
+                    Burgers • Fast Food
+                </p>
+
+                <span class="rating">
+                    ⭐ 4.5
+                </span>
+
+                <span class="price-range">
+                    ₹₹
+                </span>
+
+                <button
+                    class="btn restaurant-btn"
+                    onclick="showRestaurantMenu('Burger Point')">
+                    View Menu
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Spice Garden -->
+
+        <div class="restaurant-card"
+             data-cuisine="indian"
+             data-rating="4.6"
+             data-price="2">
+
+            <div class="restaurant-image">
+                🍛
+            </div>
+
+            <div class="restaurant-info">
+
+                <h3>Spice Garden</h3>
+
+                <p>
+                    Indian • Biryani • Curry
+                </p>
+
+                <span class="rating">
+                    ⭐ 4.6
+                </span>
+
+                <span class="price-range">
+                    ₹₹
+                </span>
+
+                <button
+                    class="btn restaurant-btn"
+                    onclick="showRestaurantMenu('Spice Garden')">
+                    View Menu
+                </button>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- No Results Message -->
+
+    <p id="no-restaurant-message"
+       style="display:none; text-align:center; margin-top:20px;">
+
+        No restaurants found matching your filters.
+
+    </p>
+
+</section>
 
 
     <!-- Menu -->
