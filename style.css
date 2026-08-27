@@ -1,0 +1,979 @@
+/* ========================================
+   FRESHBITE - ONLINE FOOD ORDERING
+   STYLE SHEET
+======================================== */
+
+
+/* ========================================
+   GENERAL STYLES
+======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #fffaf5;
+    color: #333;
+    line-height: 1.6;
+}
+
+section {
+    padding: 70px 8%;
+}
+
+section h2 {
+    text-align: center;
+    font-size: 34px;
+    margin-bottom: 15px;
+    color: #222;
+}
+
+.section-description {
+    text-align: center;
+    margin-bottom: 35px;
+    color: #777;
+}
+
+
+/* ========================================
+   NAVIGATION BAR
+======================================== */
+
+header {
+    background: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar {
+    max-width: 1200px;
+    margin: auto;
+    padding: 18px 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    color: #ff5a1f;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #ff5a1f;
+}
+
+
+/* ========================================
+   BUTTONS
+======================================== */
+
+.btn {
+    display: inline-block;
+    border: none;
+    background: #ff5a1f;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #e6490b;
+    transform: translateY(-2px);
+}
+
+
+/* ========================================
+   HOME / HERO
+======================================== */
+
+.hero {
+    min-height: 600px;
+
+    display: flex;
+    align-items: center;
+
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.55),
+            rgba(0, 0, 0, 0.55)
+        ),
+        url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80");
+
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-content {
+    max-width: 650px;
+    color: white;
+}
+
+.welcome {
+    color: #ffb38a;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+.hero h1 {
+    font-size: 58px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.hero-content > p:not(.welcome) {
+    font-size: 19px;
+    margin-bottom: 30px;
+    color: #f2f2f2;
+}
+
+
+/* ========================================
+   CATEGORIES
+======================================== */
+
+.categories {
+    background: white;
+}
+
+.category-container {
+    max-width: 1100px;
+    margin: 35px auto 0;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+.category-card {
+    background: #fffaf5;
+    padding: 30px 20px;
+    text-align: center;
+    border-radius: 15px;
+
+    font-size: 45px;
+
+    border: 1px solid #eee;
+
+    transition: 0.3s;
+}
+
+.category-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.category-card h3 {
+    font-size: 20px;
+    margin: 10px 0 5px;
+}
+
+.category-card p {
+    font-size: 14px;
+    color: #777;
+}
+
+
+/* ========================================
+   RESTAURANTS
+======================================== */
+
+#restaurants {
+    background: #fffaf5;
+}
+
+.restaurant-container {
+    max-width: 1100px;
+    margin: 35px auto 0;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.restaurant-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+
+    transition: 0.3s;
+}
+
+.restaurant-card:hover {
+    transform: translateY(-6px);
+}
+
+.restaurant-image {
+    height: 180px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #ffe7d8;
+
+    font-size: 75px;
+}
+
+.restaurant-info {
+    padding: 22px;
+}
+
+.restaurant-info h3 {
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+
+.restaurant-info p {
+    color: #777;
+    margin-bottom: 12px;
+}
+
+.rating {
+    color: #f39c12;
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+.price-range {
+    color: #555;
+    font-weight: bold;
+}
+
+.restaurant-btn {
+    width: 100%;
+    margin-top: 18px;
+}
+
+
+/* ========================================
+   MENU
+======================================== */
+
+#menu {
+    background: white;
+}
+
+.filters {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.filter-btn {
+    border: 1px solid #ff5a1f;
+    background: white;
+    color: #ff5a1f;
+
+    padding: 10px 22px;
+    margin: 5px;
+
+    border-radius: 25px;
+    cursor: pointer;
+
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: #ff5a1f;
+    color: white;
+}
+
+.food-container {
+    max-width: 1100px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.food-card {
+    background: #fffaf5;
+
+    border-radius: 15px;
+    overflow: hidden;
+
+    border: 1px solid #eee;
+
+    transition: 0.3s;
+}
+
+.food-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.food-image {
+    height: 190px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #ffe7d8;
+
+    font-size: 75px;
+}
+
+.food-info {
+    padding: 20px;
+}
+
+.food-tag {
+    display: inline-block;
+
+    padding: 4px 10px;
+    border-radius: 15px;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    margin-bottom: 10px;
+}
+
+.food-tag.veg {
+    background: #dff5e1;
+    color: #228b22;
+}
+
+.food-tag.nonveg {
+    background: #ffe0e0;
+    color: #d32f2f;
+}
+
+.food-tag.vegan {
+    background: #e0f4df;
+    color: #287a28;
+}
+
+.food-info h3 {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.food-info p {
+    color: #777;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.food-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.price {
+    color: #ff5a1f;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.add-btn {
+    border: none;
+    background: #ff5a1f;
+    color: white;
+
+    padding: 9px 15px;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+.add-btn:hover {
+    background: #e6490b;
+}
+
+
+/* ========================================
+   PRODUCT DETAILS
+======================================== */
+
+#product-detail {
+    background: #fffaf5;
+}
+
+.product-detail-container {
+    max-width: 1000px;
+    margin: 35px auto;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+
+    align-items: center;
+
+    background: white;
+    padding: 35px;
+
+    border-radius: 18px;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.product-detail-image {
+    min-height: 350px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #ffe7d8;
+    border-radius: 15px;
+
+    font-size: 130px;
+}
+
+.product-detail-info h3 {
+    margin: 12px 0;
+}
+
+.product-detail-info h4 {
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+.product-detail-info p {
+    color: #666;
+}
+
+
+/* ========================================
+   CART
+======================================== */
+
+#cart {
+    background: white;
+}
+
+#cart-container {
+    max-width: 900px;
+    margin: 30px auto;
+
+    background: #fffaf5;
+
+    padding: 30px;
+
+    border-radius: 15px;
+
+    min-height: 120px;
+}
+
+.empty-cart {
+    text-align: center;
+    color: #777;
+    padding: 25px;
+}
+
+.cart-summary {
+    max-width: 900px;
+    margin: auto;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px 30px;
+
+    border-top: 2px solid #eee;
+}
+
+.cart-summary h3 {
+    font-size: 24px;
+}
+
+
+/* ========================================
+   CHECKOUT
+======================================== */
+
+#checkout {
+    background: #fffaf5;
+}
+
+.checkout-container {
+    max-width: 650px;
+    margin: 30px auto;
+
+    background: white;
+
+    padding: 35px;
+
+    border-radius: 15px;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+#checkout-form h3 {
+    margin: 20px 0 12px;
+}
+
+#checkout-form input,
+#checkout-form textarea,
+#checkout-form select,
+#login-form input,
+#register-form input,
+#contact-form input,
+#contact-form textarea {
+    width: 100%;
+
+    padding: 13px;
+
+    margin-bottom: 15px;
+
+    border: 1px solid #ddd;
+    border-radius: 8px;
+
+    font-size: 15px;
+
+    outline: none;
+}
+
+#checkout-form input:focus,
+#checkout-form textarea:focus,
+#checkout-form select:focus,
+#login-form input:focus,
+#register-form input:focus,
+#contact-form input:focus,
+#contact-form textarea:focus {
+    border-color: #ff5a1f;
+}
+
+#checkout-form .btn {
+    width: 100%;
+    margin-top: 15px;
+}
+
+
+/* ========================================
+   ORDER TRACKING
+======================================== */
+
+#order-tracking {
+    background: white;
+}
+
+.tracking-container {
+    max-width: 1100px;
+    margin: 35px auto;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.tracking-step {
+    text-align: center;
+
+    padding: 25px 15px;
+
+    border-radius: 15px;
+
+    background: #f5f5f5;
+
+    border: 2px solid transparent;
+}
+
+.tracking-step.active {
+    border-color: #ff5a1f;
+    background: #fff1e9;
+}
+
+.tracking-step span {
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: auto auto 15px;
+
+    border-radius: 50%;
+
+    background: #ff5a1f;
+    color: white;
+
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.tracking-step h3 {
+    margin-bottom: 8px;
+}
+
+.tracking-step p {
+    color: #777;
+    font-size: 14px;
+}
+
+
+/* ========================================
+   ACCOUNT
+======================================== */
+
+#account {
+    background: #fffaf5;
+}
+
+.account-container {
+    max-width: 1000px;
+    margin: 35px auto;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.account-card {
+    background: white;
+
+    padding: 30px 20px;
+
+    text-align: center;
+
+    border-radius: 15px;
+
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+
+    transition: 0.3s;
+}
+
+.account-card:hover {
+    transform: translateY(-5px);
+}
+
+.account-icon {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.account-card h3 {
+    margin-bottom: 8px;
+}
+
+.account-card p {
+    color: #777;
+    margin-bottom: 18px;
+}
+
+
+/* ========================================
+   LOGIN / REGISTER
+======================================== */
+
+#login,
+#register {
+    background: white;
+}
+
+.login-container {
+    max-width: 450px;
+    margin: 30px auto;
+
+    background: #fffaf5;
+
+    padding: 35px;
+
+    border-radius: 15px;
+
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+}
+
+#login-form .btn,
+#register-form .btn {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.login-container p {
+    text-align: center;
+    color: #666;
+}
+
+.login-container a {
+    color: #ff5a1f;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+
+/* ========================================
+   ABOUT
+======================================== */
+
+#about {
+    background: #fffaf5;
+}
+
+.about-content {
+    max-width: 850px;
+    margin: 30px auto;
+
+    background: white;
+
+    padding: 35px;
+
+    border-radius: 15px;
+
+    text-align: center;
+
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.07);
+}
+
+.about-content h3 {
+    font-size: 26px;
+    color: #ff5a1f;
+    margin-bottom: 15px;
+}
+
+.about-content p {
+    color: #666;
+    margin-bottom: 15px;
+}
+
+
+/* ========================================
+   CONTACT
+======================================== */
+
+#contact {
+    background: white;
+}
+
+.contact-container {
+    max-width: 1000px;
+    margin: 35px auto;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+
+    align-items: start;
+}
+
+.contact-info {
+    background: #fffaf5;
+
+    padding: 30px;
+
+    border-radius: 15px;
+}
+
+.contact-info h3 {
+    font-size: 25px;
+    margin-bottom: 20px;
+    color: #ff5a1f;
+}
+
+.contact-info p {
+    margin-bottom: 15px;
+    color: #555;
+}
+
+#contact-form {
+    background: #fffaf5;
+
+    padding: 30px;
+
+    border-radius: 15px;
+}
+
+#contact-form .btn {
+    width: 100%;
+}
+
+
+/* ========================================
+   FOOTER
+======================================== */
+
+footer {
+    background: #222;
+    color: white;
+}
+
+.footer-content {
+    max-width: 1100px;
+    margin: auto;
+
+    padding: 50px 30px;
+
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 40px;
+}
+
+.footer-content h3 {
+    color: #ff8a5b;
+    margin-bottom: 10px;
+}
+
+.footer-content h4 {
+    margin-bottom: 15px;
+}
+
+.footer-content p {
+    color: #ccc;
+}
+
+.footer-content a {
+    display: block;
+
+    color: #ccc;
+
+    text-decoration: none;
+
+    margin-bottom: 8px;
+
+    transition: 0.3s;
+}
+
+.footer-content a:hover {
+    color: #ff8a5b;
+}
+
+.footer-bottom {
+    border-top: 1px solid #444;
+
+    text-align: center;
+
+    padding: 18px;
+
+    color: #aaa;
+}
+
+
+/* ========================================
+   RESPONSIVE DESIGN
+======================================== */
+
+@media (max-width: 900px) {
+
+    .nav-links {
+        gap: 12px;
+    }
+
+    .hero h1 {
+        font-size: 45px;
+    }
+
+    .category-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .restaurant-container,
+    .food-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .tracking-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .account-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    section {
+        padding: 50px 5%;
+    }
+
+    section h2 {
+        font-size: 28px;
+    }
+
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero {
+        min-height: 500px;
+    }
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+    .category-container,
+    .restaurant-container,
+    .food-container,
+    .tracking-container,
+    .account-container,
+    .contact-container,
+    .product-detail-container {
+        grid-template-columns: 1fr;
+    }
+
+    .product-detail-container {
+        gap: 25px;
+        padding: 20px;
+    }
+
+    .product-detail-image {
+        min-height: 250px;
+        font-size: 90px;
+    }
+
+    .cart-summary {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+}
