@@ -766,3 +766,126 @@ function startOrderTracking() {
 ============================================ */
 
 updateCart();
+/* ============================================
+   RESTAURANT FILTERS
+============================================ */
+
+function filterRestaurants() {
+
+    const cuisine =
+        document.getElementById("cuisine-filter").value;
+
+    const rating =
+        document.getElementById("rating-filter").value;
+
+    const price =
+        document.getElementById("price-filter").value;
+
+    const restaurants =
+        document.querySelectorAll(".restaurant-card");
+
+    const noResults =
+        document.getElementById("no-restaurant-message");
+
+    let visibleRestaurants = 0;
+
+
+    restaurants.forEach(function(restaurant) {
+
+        const restaurantCuisine =
+            restaurant.dataset.cuisine;
+
+        const restaurantRating =
+            parseFloat(restaurant.dataset.rating);
+
+        const restaurantPrice =
+            restaurant.dataset.price;
+
+
+        const cuisineMatch =
+            cuisine === "all" ||
+            restaurantCuisine === cuisine;
+
+
+        const ratingMatch =
+            rating === "all" ||
+            restaurantRating >= parseFloat(rating);
+
+
+        const priceMatch =
+            price === "all" ||
+            restaurantPrice === price;
+
+
+        if (
+            cuisineMatch &&
+            ratingMatch &&
+            priceMatch
+        ) {
+
+            restaurant.style.display = "block";
+
+            visibleRestaurants++;
+
+        } else {
+
+            restaurant.style.display = "none";
+
+        }
+
+    });
+
+
+    if (visibleRestaurants === 0) {
+
+        noResults.style.display = "block";
+
+    } else {
+
+        noResults.style.display = "none";
+
+    }
+
+}
+
+
+/* ============================================
+   RESET RESTAURANT FILTERS
+============================================ */
+
+function resetRestaurantFilters() {
+
+    document.getElementById("cuisine-filter").value = "all";
+
+    document.getElementById("rating-filter").value = "all";
+
+    document.getElementById("price-filter").value = "all";
+
+    filterRestaurants();
+
+}
+
+
+/* ============================================
+   RESTAURANT VIEW MENU
+============================================ */
+
+function showRestaurantMenu(restaurantName) {
+
+    alert(
+        restaurantName +
+        " selected! Showing available menu items."
+    );
+
+    const menuSection =
+        document.getElementById("menu");
+
+    if (menuSection) {
+
+        menuSection.scrollIntoView({
+            behavior: "smooth"
+        });
+
+    }
+
+}
