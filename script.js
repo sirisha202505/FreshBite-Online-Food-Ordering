@@ -5,10 +5,13 @@
 
 
 /* ============================================
-   FOOD DATA
+   FOOD DATA - 30 ITEMS
 ============================================ */
 
 const foodItems = [
+
+    /* ==================== PIZZA ==================== */
+
     {
         id: 1,
         name: "Margherita Pizza",
@@ -19,6 +22,50 @@ const foodItems = [
     },
     {
         id: 2,
+        name: "Farmhouse Pizza",
+        price: 349,
+        category: "Pizza",
+        dietary: "veg",
+        description: "Loaded with onion, capsicum, tomato and cheese."
+    },
+    {
+        id: 3,
+        name: "Paneer Tikka Pizza",
+        price: 379,
+        category: "Pizza",
+        dietary: "veg",
+        description: "Spicy paneer tikka with mozzarella and herbs."
+    },
+    {
+        id: 4,
+        name: "Chicken Tikka Pizza",
+        price: 429,
+        category: "Pizza",
+        dietary: "nonveg",
+        description: "Tender chicken tikka with cheese and vegetables."
+    },
+    {
+        id: 5,
+        name: "Pepperoni Pizza",
+        price: 449,
+        category: "Pizza",
+        dietary: "nonveg",
+        description: "Classic pepperoni with mozzarella cheese."
+    },
+
+
+    /* ==================== BURGERS ==================== */
+
+    {
+        id: 6,
+        name: "Veg Burger",
+        price: 149,
+        category: "Burgers",
+        dietary: "veg",
+        description: "Crispy vegetable patty with fresh lettuce."
+    },
+    {
+        id: 7,
         name: "Chicken Burger",
         price: 199,
         category: "Burgers",
@@ -26,7 +73,35 @@ const foodItems = [
         description: "Juicy chicken patty with fresh vegetables."
     },
     {
-        id: 3,
+        id: 8,
+        name: "Cheese Burger",
+        price: 229,
+        category: "Burgers",
+        dietary: "veg",
+        description: "Classic burger with a delicious cheese slice."
+    },
+    {
+        id: 9,
+        name: "Paneer Burger",
+        price: 219,
+        category: "Burgers",
+        dietary: "veg",
+        description: "Crispy paneer patty with spicy sauce."
+    },
+    {
+        id: 10,
+        name: "Double Chicken Burger",
+        price: 299,
+        category: "Burgers",
+        dietary: "nonveg",
+        description: "Double chicken patties with cheese and sauces."
+    },
+
+
+    /* ==================== PASTA ==================== */
+
+    {
+        id: 11,
         name: "White Sauce Pasta",
         price: 249,
         category: "Pasta",
@@ -34,7 +109,43 @@ const foodItems = [
         description: "Creamy pasta with herbs and vegetables."
     },
     {
-        id: 4,
+        id: 12,
+        name: "Red Sauce Pasta",
+        price: 229,
+        category: "Pasta",
+        dietary: "veg",
+        description: "Pasta cooked in rich tomato sauce."
+    },
+    {
+        id: 13,
+        name: "Arrabbiata Pasta",
+        price: 259,
+        category: "Pasta",
+        dietary: "veg",
+        description: "Spicy tomato pasta with Italian herbs."
+    },
+    {
+        id: 14,
+        name: "Chicken Alfredo Pasta",
+        price: 329,
+        category: "Pasta",
+        dietary: "nonveg",
+        description: "Creamy Alfredo pasta with tender chicken."
+    },
+    {
+        id: 15,
+        name: "Cheesy Macaroni",
+        price: 279,
+        category: "Pasta",
+        dietary: "veg",
+        description: "Creamy macaroni loaded with melted cheese."
+    },
+
+
+    /* ==================== INDIAN ==================== */
+
+    {
+        id: 16,
         name: "Chicken Biryani",
         price: 299,
         category: "Indian",
@@ -42,7 +153,43 @@ const foodItems = [
         description: "Aromatic basmati rice with spicy chicken."
     },
     {
-        id: 5,
+        id: 17,
+        name: "Veg Biryani",
+        price: 249,
+        category: "Indian",
+        dietary: "veg",
+        description: "Fragrant rice cooked with fresh vegetables."
+    },
+    {
+        id: 18,
+        name: "Paneer Butter Masala",
+        price: 279,
+        category: "Indian",
+        dietary: "veg",
+        description: "Soft paneer in a rich creamy tomato gravy."
+    },
+    {
+        id: 19,
+        name: "Butter Chicken",
+        price: 349,
+        category: "Indian",
+        dietary: "nonveg",
+        description: "Tender chicken cooked in creamy butter gravy."
+    },
+    {
+        id: 20,
+        name: "Masala Dosa",
+        price: 129,
+        category: "Indian",
+        dietary: "veg",
+        description: "Crispy dosa served with potato masala."
+    },
+
+
+    /* ==================== HEALTHY ==================== */
+
+    {
+        id: 21,
         name: "Fresh Veg Salad",
         price: 179,
         category: "Healthy",
@@ -50,12 +197,80 @@ const foodItems = [
         description: "Healthy vegetables with fresh dressing."
     },
     {
-        id: 6,
+        id: 22,
+        name: "Fruit Bowl",
+        price: 199,
+        category: "Healthy",
+        dietary: "vegan",
+        description: "Fresh seasonal fruits served in a healthy bowl."
+    },
+    {
+        id: 23,
+        name: "Greek Salad",
+        price: 229,
+        category: "Healthy",
+        dietary: "veg",
+        description: "Fresh vegetables, olives and feta cheese."
+    },
+    {
+        id: 24,
+        name: "Grilled Chicken Salad",
+        price: 279,
+        category: "Healthy",
+        dietary: "nonveg",
+        description: "Grilled chicken with fresh vegetables and greens."
+    },
+    {
+        id: 25,
+        name: "Veg Sandwich",
+        price: 159,
+        category: "Healthy",
+        dietary: "veg",
+        description: "Fresh vegetables layered inside toasted bread."
+    },
+
+
+    /* ==================== DESSERTS ==================== */
+
+    {
+        id: 26,
         name: "Chocolate Cake",
         price: 149,
         category: "Desserts",
         dietary: "veg",
         description: "Soft chocolate cake with creamy frosting."
+    },
+    {
+        id: 27,
+        name: "Red Velvet Cake",
+        price: 179,
+        category: "Desserts",
+        dietary: "veg",
+        description: "Soft red velvet cake with cream cheese frosting."
+    },
+    {
+        id: 28,
+        name: "Chocolate Brownie",
+        price: 129,
+        category: "Desserts",
+        dietary: "veg",
+        description: "Warm and fudgy chocolate brownie."
+    },
+    {
+        id: 29,
+        name: "Vanilla Ice Cream",
+        price: 99,
+        category: "Desserts",
+        dietary: "veg",
+        description: "Classic creamy vanilla ice cream."
+    },
+    {
+        id: 30,
+        name: "Gulab Jamun",
+        price: 119,
+        category: "Desserts",
+        dietary: "veg",
+        description: "Soft gulab jamun served with sweet syrup."
     }
 ];
 
@@ -112,9 +327,13 @@ function addToCart(itemId) {
     }
 
     saveCart();
+
     updateCart();
 
-    alert(item.name + " added to cart!");
+    alert(
+        item.name +
+        " added to cart!"
+    );
 }
 
 
@@ -130,8 +349,9 @@ function updateCart() {
     const cartTotal =
         document.getElementById("cart-total");
 
+    updateCartCount();
+
     if (!cartContainer || !cartTotal) {
-        updateCartCount();
         return;
     }
 
@@ -146,8 +366,6 @@ function updateCart() {
         `;
 
         cartTotal.textContent = "0";
-
-        updateCartCount();
 
         return;
     }
@@ -210,11 +428,10 @@ function updateCart() {
         `;
 
         cartContainer.appendChild(cartItem);
+
     });
 
     cartTotal.textContent = total;
-
-    updateCartCount();
 }
 
 
@@ -249,7 +466,9 @@ function updateCartCount() {
 function increaseQuantity(itemId) {
 
     const item =
-        cart.find(cartItem => cartItem.id === itemId);
+        cart.find(
+            cartItem => cartItem.id === itemId
+        );
 
     if (item) {
 
@@ -269,7 +488,9 @@ function increaseQuantity(itemId) {
 function decreaseQuantity(itemId) {
 
     const item =
-        cart.find(cartItem => cartItem.id === itemId);
+        cart.find(
+            cartItem => cartItem.id === itemId
+        );
 
     if (!item) {
         return;
@@ -300,7 +521,9 @@ function decreaseQuantity(itemId) {
 function removeFromCart(itemId) {
 
     const item =
-        cart.find(cartItem => cartItem.id === itemId);
+        cart.find(
+            cartItem => cartItem.id === itemId
+        );
 
     cart =
         cart.filter(
@@ -322,7 +545,7 @@ function removeFromCart(itemId) {
 
 
 /* ============================================
-   FOOD FILTER
+   FOOD CATEGORY FILTER
 ============================================ */
 
 function filterFood(category, event) {
@@ -339,9 +562,9 @@ function filterFood(category, event) {
 
     });
 
-    if (event && event.target) {
+    if (event && event.currentTarget) {
 
-        event.target.classList.add("active");
+        event.currentTarget.classList.add("active");
 
     }
 
@@ -355,7 +578,56 @@ function filterFood(category, event) {
             cardCategory === category
         ) {
 
-            card.style.display = "block";
+            card.style.display = "";
+
+        } else {
+
+            card.style.display = "none";
+
+        }
+    });
+}
+
+
+/* ============================================
+   FOOD SEARCH
+============================================ */
+
+function searchFood() {
+
+    const searchInput =
+        document.getElementById("search-input");
+
+    if (!searchInput) {
+        return;
+    }
+
+    const searchText =
+        searchInput.value
+            .toLowerCase()
+            .trim();
+
+    const foodCards =
+        document.querySelectorAll(".food-card");
+
+    foodCards.forEach(card => {
+
+        const foodName =
+            card
+                .querySelector("h3")
+                ?.textContent
+                .toLowerCase() || "";
+
+        const foodCategory =
+            card.dataset.category
+                ?.toLowerCase() || "";
+
+        if (
+            foodName.includes(searchText) ||
+            foodCategory.includes(searchText)
+        ) {
+
+            card.style.display = "";
 
         } else {
 
@@ -662,15 +934,12 @@ restaurantButtons.forEach(button => {
         "click",
         function () {
 
-            const menuSection =
-                document.getElementById("menu");
+            const restaurantName =
+                button.dataset.restaurant ||
+                button.textContent.trim();
 
-            if (menuSection) {
+            showRestaurantMenu(restaurantName);
 
-                menuSection.scrollIntoView({
-                    behavior: "smooth"
-                });
-            }
         }
     );
 });
@@ -732,14 +1001,10 @@ function filterRestaurants() {
             restaurant.dataset.price;
 
 
-        /* Cuisine Match */
-
         const cuisineMatch =
             selectedCuisine === "all" ||
             restaurantCuisine === selectedCuisine;
 
-
-        /* Rating Match */
 
         const ratingMatch =
             selectedRating === "all" ||
@@ -747,14 +1012,10 @@ function filterRestaurants() {
             parseFloat(selectedRating);
 
 
-        /* Price Match */
-
         const priceMatch =
             selectedPrice === "all" ||
             restaurantPrice === selectedPrice;
 
-
-        /* Show / Hide */
 
         if (
             cuisineMatch &&
@@ -772,8 +1033,6 @@ function filterRestaurants() {
         }
     });
 
-
-    /* No Results */
 
     if (noResults) {
 
