@@ -64,7 +64,8 @@ const foodItems = [
    CART DATA
 ============================================ */
 
-let cart = JSON.parse(localStorage.getItem("freshBiteCart")) || [];
+let cart =
+    JSON.parse(localStorage.getItem("freshBiteCart")) || [];
 
 
 /* ============================================
@@ -72,7 +73,11 @@ let cart = JSON.parse(localStorage.getItem("freshBiteCart")) || [];
 ============================================ */
 
 function saveCart() {
-    localStorage.setItem("freshBiteCart", JSON.stringify(cart));
+
+    localStorage.setItem(
+        "freshBiteCart",
+        JSON.stringify(cart)
+    );
 }
 
 
@@ -82,13 +87,15 @@ function saveCart() {
 
 function addToCart(itemId) {
 
-    const item = foodItems.find(food => food.id === itemId);
+    const item =
+        foodItems.find(food => food.id === itemId);
 
     if (!item) {
         return;
     }
 
-    const existingItem = cart.find(cartItem => cartItem.id === itemId);
+    const existingItem =
+        cart.find(cartItem => cartItem.id === itemId);
 
     if (existingItem) {
 
@@ -117,10 +124,14 @@ function addToCart(itemId) {
 
 function updateCart() {
 
-    const cartContainer = document.getElementById("cart-container");
-    const cartTotal = document.getElementById("cart-total");
+    const cartContainer =
+        document.getElementById("cart-container");
+
+    const cartTotal =
+        document.getElementById("cart-total");
 
     if (!cartContainer || !cartTotal) {
+        updateCartCount();
         return;
     }
 
@@ -141,24 +152,21 @@ function updateCart() {
         return;
     }
 
-
     let total = 0;
-
 
     cart.forEach(item => {
 
-        const itemTotal = item.price * item.quantity;
+        const itemTotal =
+            item.price * item.quantity;
 
         total += itemTotal;
 
-
-        const cartItem = document.createElement("div");
+        const cartItem =
+            document.createElement("div");
 
         cartItem.className = "cart-item";
 
-
         cartItem.innerHTML = `
-
             <div class="cart-item-info">
 
                 <h3>${item.name}</h3>
@@ -168,7 +176,6 @@ function updateCart() {
                 </p>
 
             </div>
-
 
             <div class="quantity-controls">
 
@@ -190,28 +197,20 @@ function updateCart() {
 
             </div>
 
-
             <strong class="cart-item-total">
                 ₹${itemTotal}
             </strong>
-
 
             <button
                 type="button"
                 class="remove-btn"
                 onclick="removeFromCart(${item.id})">
-
                 Remove
-
             </button>
-
         `;
 
-
         cartContainer.appendChild(cartItem);
-
     });
-
 
     cartTotal.textContent = total;
 
@@ -229,8 +228,11 @@ function updateCartCount() {
         document.querySelectorAll(".cart-count");
 
     const totalQuantity =
-        cart.reduce((total, item) => total + item.quantity, 0);
-
+        cart.reduce(
+            (total, item) =>
+                total + item.quantity,
+            0
+        );
 
     cartCounts.forEach(count => {
 
@@ -248,7 +250,6 @@ function increaseQuantity(itemId) {
 
     const item =
         cart.find(cartItem => cartItem.id === itemId);
-
 
     if (item) {
 
@@ -270,11 +271,9 @@ function decreaseQuantity(itemId) {
     const item =
         cart.find(cartItem => cartItem.id === itemId);
 
-
     if (!item) {
         return;
     }
-
 
     if (item.quantity > 1) {
 
@@ -283,10 +282,10 @@ function decreaseQuantity(itemId) {
     } else {
 
         cart =
-            cart.filter(cartItem => cartItem.id !== itemId);
-
+            cart.filter(
+                cartItem => cartItem.id !== itemId
+            );
     }
-
 
     saveCart();
 
@@ -303,20 +302,21 @@ function removeFromCart(itemId) {
     const item =
         cart.find(cartItem => cartItem.id === itemId);
 
-
     cart =
-        cart.filter(cartItem => cartItem.id !== itemId);
-
+        cart.filter(
+            cartItem => cartItem.id !== itemId
+        );
 
     saveCart();
 
     updateCart();
 
-
     if (item) {
 
-        alert(item.name + " removed from cart.");
-
+        alert(
+            item.name +
+            " removed from cart."
+        );
     }
 }
 
@@ -333,13 +333,11 @@ function filterFood(category, event) {
     const filterButtons =
         document.querySelectorAll(".filter-btn");
 
-
     filterButtons.forEach(button => {
 
         button.classList.remove("active");
 
     });
-
 
     if (event && event.target) {
 
@@ -347,12 +345,10 @@ function filterFood(category, event) {
 
     }
 
-
     foodCards.forEach(card => {
 
         const cardCategory =
             card.dataset.category;
-
 
         if (
             category === "all" ||
@@ -366,7 +362,6 @@ function filterFood(category, event) {
             card.style.display = "none";
 
         }
-
     });
 }
 
@@ -386,17 +381,14 @@ function goToCheckout() {
         return;
     }
 
-
     const checkoutSection =
         document.getElementById("checkout");
-
 
     if (checkoutSection) {
 
         checkoutSection.scrollIntoView({
             behavior: "smooth"
         });
-
     }
 }
 
@@ -408,7 +400,6 @@ function goToCheckout() {
 const checkoutForm =
     document.getElementById("checkout-form");
 
-
 if (checkoutForm) {
 
     checkoutForm.addEventListener(
@@ -416,7 +407,6 @@ if (checkoutForm) {
         function (event) {
 
             event.preventDefault();
-
 
             if (cart.length === 0) {
 
@@ -427,30 +417,39 @@ if (checkoutForm) {
                 return;
             }
 
-
             const customerName =
-                document.getElementById("customer-name").value.trim();
-
+                document
+                    .getElementById("customer-name")
+                    .value
+                    .trim();
 
             const customerEmail =
-                document.getElementById("customer-email").value.trim();
-
+                document
+                    .getElementById("customer-email")
+                    .value
+                    .trim();
 
             const customerPhone =
-                document.getElementById("customer-phone").value.trim();
-
+                document
+                    .getElementById("customer-phone")
+                    .value
+                    .trim();
 
             const customerAddress =
-                document.getElementById("customer-address").value.trim();
-
+                document
+                    .getElementById("customer-address")
+                    .value
+                    .trim();
 
             const deliveryTime =
-                document.getElementById("delivery-time").value;
-
+                document
+                    .getElementById("delivery-time")
+                    .value;
 
             const paymentMethod =
-                document.getElementById("payment-method").value;
-
+                document
+                    .getElementById("payment-method")
+                    .value;
 
             if (
                 !customerName ||
@@ -468,9 +467,7 @@ if (checkoutForm) {
                 return;
             }
 
-
             let paymentMessage = "";
-
 
             if (paymentMethod === "upi") {
 
@@ -486,9 +483,7 @@ if (checkoutForm) {
 
                 paymentMessage =
                     "Cash on Delivery selected.";
-
             }
-
 
             alert(
                 "Order placed successfully!\n\n" +
@@ -502,7 +497,6 @@ if (checkoutForm) {
                 paymentMessage
             );
 
-
             cart = [];
 
             saveCart();
@@ -511,10 +505,8 @@ if (checkoutForm) {
 
             checkoutForm.reset();
 
-
             const tracking =
                 document.getElementById("order-tracking");
-
 
             if (tracking) {
 
@@ -523,9 +515,7 @@ if (checkoutForm) {
                 });
 
                 startOrderTracking();
-
             }
-
         }
     );
 }
@@ -538,7 +528,6 @@ if (checkoutForm) {
 const loginForm =
     document.getElementById("login-form");
 
-
 if (loginForm) {
 
     loginForm.addEventListener(
@@ -547,16 +536,17 @@ if (loginForm) {
 
             event.preventDefault();
 
-
             const email =
-                document.getElementById("login-email")
-                    .value.trim();
-
+                document
+                    .getElementById("login-email")
+                    .value
+                    .trim();
 
             const password =
-                document.getElementById("login-password")
-                    .value.trim();
-
+                document
+                    .getElementById("login-password")
+                    .value
+                    .trim();
 
             if (!email || !password) {
 
@@ -567,15 +557,12 @@ if (loginForm) {
                 return;
             }
 
-
             alert(
                 "Login successful!\n\n" +
                 "Welcome to FreshBite."
             );
 
-
             loginForm.reset();
-
         }
     );
 }
@@ -588,7 +575,6 @@ if (loginForm) {
 const registerForm =
     document.getElementById("register-form");
 
-
 if (registerForm) {
 
     registerForm.addEventListener(
@@ -597,21 +583,23 @@ if (registerForm) {
 
             event.preventDefault();
 
-
             const name =
-                document.getElementById("register-name")
-                    .value.trim();
-
+                document
+                    .getElementById("register-name")
+                    .value
+                    .trim();
 
             const email =
-                document.getElementById("register-email")
-                    .value.trim();
-
+                document
+                    .getElementById("register-email")
+                    .value
+                    .trim();
 
             const password =
-                document.getElementById("register-password")
-                    .value.trim();
-
+                document
+                    .getElementById("register-password")
+                    .value
+                    .trim();
 
             if (!name || !email || !password) {
 
@@ -622,7 +610,6 @@ if (registerForm) {
                 return;
             }
 
-
             alert(
                 "Account created successfully!\n\n" +
                 "Welcome, " +
@@ -630,9 +617,7 @@ if (registerForm) {
                 "!"
             );
 
-
             registerForm.reset();
-
         }
     );
 }
@@ -645,7 +630,6 @@ if (registerForm) {
 const contactForm =
     document.getElementById("contact-form");
 
-
 if (contactForm) {
 
     contactForm.addEventListener(
@@ -654,27 +638,23 @@ if (contactForm) {
 
             event.preventDefault();
 
-
             alert(
                 "Thank you for contacting FreshBite!\n\n" +
                 "We will get back to you soon."
             );
 
-
             contactForm.reset();
-
         }
     );
 }
 
 
 /* ============================================
-   RESTAURANT VIEW MENU
+   RESTAURANT BUTTONS
 ============================================ */
 
 const restaurantButtons =
     document.querySelectorAll(".restaurant-btn");
-
 
 restaurantButtons.forEach(button => {
 
@@ -685,137 +665,96 @@ restaurantButtons.forEach(button => {
             const menuSection =
                 document.getElementById("menu");
 
-
             if (menuSection) {
 
                 menuSection.scrollIntoView({
                     behavior: "smooth"
                 });
-
             }
-
         }
     );
-
 });
 
 
-/* ============================================
-   ORDER TRACKING
-============================================ */
-
-function startOrderTracking() {
-
-    const trackingSteps =
-        document.querySelectorAll(".tracking-step");
-
-
-    if (trackingSteps.length === 0) {
-        return;
-    }
-
-
-    trackingSteps.forEach((step, index) => {
-
-        if (index === 0) {
-
-            step.classList.add("active");
-
-        } else {
-
-            step.classList.remove("active");
-
-        }
-
-    });
-
-
-    let currentStep = 1;
-
-
-    const interval =
-        setInterval(function () {
-
-            if (currentStep >= trackingSteps.length) {
-
-                clearInterval(interval);
-
-                return;
-            }
-
-
-            trackingSteps[currentStep]
-                .classList.add("active");
-
-
-            currentStep++;
-
-
-            if (currentStep >= trackingSteps.length) {
-
-                clearInterval(interval);
-
-            }
-
-        }, 3000);
-}
-
-
-/* ============================================
-   INITIAL CART DISPLAY
-============================================ */
-
-updateCart();
 /* ============================================
    RESTAURANT FILTERS
 ============================================ */
 
 function filterRestaurants() {
 
-    const cuisine =
-        document.getElementById("cuisine-filter").value;
+    const cuisineFilter =
+        document.getElementById("cuisine-filter");
 
-    const rating =
-        document.getElementById("rating-filter").value;
+    const ratingFilter =
+        document.getElementById("rating-filter");
 
-    const price =
-        document.getElementById("price-filter").value;
+    const priceFilter =
+        document.getElementById("price-filter");
 
     const restaurants =
         document.querySelectorAll(".restaurant-card");
 
     const noResults =
-        document.getElementById("no-restaurant-message");
+        document.getElementById(
+            "no-restaurant-message"
+        );
+
+    if (
+        !cuisineFilter ||
+        !ratingFilter ||
+        !priceFilter
+    ) {
+        return;
+    }
+
+    const selectedCuisine =
+        cuisineFilter.value;
+
+    const selectedRating =
+        ratingFilter.value;
+
+    const selectedPrice =
+        priceFilter.value;
 
     let visibleRestaurants = 0;
 
-
-    restaurants.forEach(function(restaurant) {
+    restaurants.forEach(function (restaurant) {
 
         const restaurantCuisine =
             restaurant.dataset.cuisine;
 
         const restaurantRating =
-            parseFloat(restaurant.dataset.rating);
+            parseFloat(
+                restaurant.dataset.rating
+            );
 
         const restaurantPrice =
             restaurant.dataset.price;
 
 
-        const cuisineMatch =
-            cuisine === "all" ||
-            restaurantCuisine === cuisine;
+        /* Cuisine Match */
 
+        const cuisineMatch =
+            selectedCuisine === "all" ||
+            restaurantCuisine === selectedCuisine;
+
+
+        /* Rating Match */
 
         const ratingMatch =
-            rating === "all" ||
-            restaurantRating >= parseFloat(rating);
+            selectedRating === "all" ||
+            restaurantRating >=
+            parseFloat(selectedRating);
 
+
+        /* Price Match */
 
         const priceMatch =
-            price === "all" ||
-            restaurantPrice === price;
+            selectedPrice === "all" ||
+            restaurantPrice === selectedPrice;
 
+
+        /* Show / Hide */
 
         if (
             cuisineMatch &&
@@ -823,29 +762,30 @@ function filterRestaurants() {
             priceMatch
         ) {
 
-            restaurant.style.display = "block";
+            restaurant.style.display = "";
 
             visibleRestaurants++;
 
         } else {
 
             restaurant.style.display = "none";
-
         }
-
     });
 
 
-    if (visibleRestaurants === 0) {
+    /* No Results */
 
-        noResults.style.display = "block";
+    if (noResults) {
 
-    } else {
+        if (visibleRestaurants === 0) {
 
-        noResults.style.display = "none";
+            noResults.style.display = "block";
 
+        } else {
+
+            noResults.style.display = "none";
+        }
     }
-
 }
 
 
@@ -855,19 +795,36 @@ function filterRestaurants() {
 
 function resetRestaurantFilters() {
 
-    document.getElementById("cuisine-filter").value = "all";
+    const cuisineFilter =
+        document.getElementById("cuisine-filter");
 
-    document.getElementById("rating-filter").value = "all";
+    const ratingFilter =
+        document.getElementById("rating-filter");
 
-    document.getElementById("price-filter").value = "all";
+    const priceFilter =
+        document.getElementById("price-filter");
+
+    if (cuisineFilter) {
+
+        cuisineFilter.value = "all";
+    }
+
+    if (ratingFilter) {
+
+        ratingFilter.value = "all";
+    }
+
+    if (priceFilter) {
+
+        priceFilter.value = "all";
+    }
 
     filterRestaurants();
-
 }
 
 
 /* ============================================
-   RESTAURANT VIEW MENU
+   SHOW RESTAURANT MENU
 ============================================ */
 
 function showRestaurantMenu(restaurantName) {
@@ -885,7 +842,71 @@ function showRestaurantMenu(restaurantName) {
         menuSection.scrollIntoView({
             behavior: "smooth"
         });
+    }
+}
 
+
+/* ============================================
+   ORDER TRACKING
+============================================ */
+
+function startOrderTracking() {
+
+    const trackingSteps =
+        document.querySelectorAll(
+            ".tracking-step"
+        );
+
+    if (trackingSteps.length === 0) {
+        return;
     }
 
+    trackingSteps.forEach((step, index) => {
+
+        if (index === 0) {
+
+            step.classList.add("active");
+
+        } else {
+
+            step.classList.remove("active");
+        }
+    });
+
+    let currentStep = 1;
+
+    const interval =
+        setInterval(function () {
+
+            if (
+                currentStep >=
+                trackingSteps.length
+            ) {
+
+                clearInterval(interval);
+
+                return;
+            }
+
+            trackingSteps[currentStep]
+                .classList.add("active");
+
+            currentStep++;
+
+            if (
+                currentStep >=
+                trackingSteps.length
+            ) {
+
+                clearInterval(interval);
+            }
+
+        }, 3000);
 }
+
+
+/* ============================================
+   INITIAL CART DISPLAY
+============================================ */
+
+updateCart();
