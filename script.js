@@ -64,7 +64,16 @@ const foodItems = [
    CART DATA
 ============================================ */
 
-let cart = [];
+let cart = JSON.parse(localStorage.getItem("freshBiteCart")) || [];
+
+
+/* ============================================
+   SAVE CART
+============================================ */
+
+function saveCart() {
+    localStorage.setItem("freshBiteCart", JSON.stringify(cart));
+}
 
 
 /* ============================================
@@ -93,9 +102,9 @@ function addToCart(itemId) {
             price: item.price,
             quantity: 1
         });
-
     }
 
+    saveCart();
     updateCart();
 
     alert(item.name + " added to cart!");
@@ -127,6 +136,8 @@ function updateCart() {
 
         cartTotal.textContent = "0";
 
+        updateCartCount();
+
         return;
     }
 
@@ -145,36 +156,57 @@ function updateCart() {
 
         cartItem.className = "cart-item";
 
+
         cartItem.innerHTML = `
-            <div>
+
+            <div class="cart-item-info">
+
                 <h3>${item.name}</h3>
-                <p>₹${item.price} × ${item.quantity}</p>
+
+                <p>
+                    ₹${item.price} × ${item.quantity}
+                </p>
+
             </div>
+
 
             <div class="quantity-controls">
 
-                <button onclick="decreaseQuantity(${item.id})">
+                <button
+                    type="button"
+                    onclick="decreaseQuantity(${item.id})">
                     −
                 </button>
 
-                <span>${item.quantity}</span>
+                <span>
+                    ${item.quantity}
+                </span>
 
-                <button onclick="increaseQuantity(${item.id})">
+                <button
+                    type="button"
+                    onclick="increaseQuantity(${item.id})">
                     +
                 </button>
 
             </div>
 
-            <strong>
+
+            <strong class="cart-item-total">
                 ₹${itemTotal}
             </strong>
 
+
             <button
+                type="button"
                 class="remove-btn"
                 onclick="removeFromCart(${item.id})">
+
                 Remove
+
             </button>
+
         `;
+
 
         cartContainer.appendChild(cartItem);
 
@@ -182,6 +214,29 @@ function updateCart() {
 
 
     cartTotal.textContent = total;
+
+    updateCartCount();
+}
+
+
+/* ============================================
+   CART COUNT
+============================================ */
+
+function updateCartCount() {
+
+    const cartCounts =
+        document.querySelectorAll(".cart-count");
+
+    const totalQuantity =
+        cart.reduce((total, item) => total + item.quantity, 0);
+
+
+    cartCounts.forEach(count => {
+
+        count.textContent = totalQuantity;
+
+    });
 }
 
 
@@ -191,11 +246,15 @@ function updateCart() {
 
 function increaseQuantity(itemId) {
 
-    const item = cart.find(cartItem => cartItem.id === itemId);
+    const item =
+        cart.find(cartItem => cartItem.id === itemId);
+
 
     if (item) {
 
         item.quantity++;
+
+        saveCart();
 
         updateCart();
     }
@@ -208,11 +267,14 @@ function increaseQuantity(itemId) {
 
 function decreaseQuantity(itemId) {
 
-    const item = cart.find(cartItem => cartItem.id === itemId);
+    const item =
+        cart.find(cartItem => cartItem.id === itemId);
+
 
     if (!item) {
         return;
     }
+
 
     if (item.quantity > 1) {
 
@@ -220,9 +282,13 @@ function decreaseQuantity(itemId) {
 
     } else {
 
-        cart = cart.filter(cartItem => cartItem.id !== itemId);
+        cart =
+            cart.filter(cartItem => cartItem.id !== itemId);
 
     }
+
+
+    saveCart();
 
     updateCart();
 }
@@ -234,9 +300,24 @@ function decreaseQuantity(itemId) {
 
 function removeFromCart(itemId) {
 
-    cart = cart.filter(item => item.id !== itemId);
+    const item =
+        cart.find(cartItem => cartItem.id === itemId);
+
+
+    cart =
+        cart.filter(cartItem => cartItem.id !== itemId);
+
+
+    saveCart();
 
     updateCart();
+
+
+    if (item) {
+
+        alert(item.name + " removed from cart.");
+
+    }
 }
 
 
@@ -244,10 +325,13 @@ function removeFromCart(itemId) {
    FOOD FILTER
 ============================================ */
 
-function filterFood(category) {
+function filterFood(category, event) {
 
-    const foodCards = document.querySelectorAll(".food-card");
-    const filterButtons = document.querySelectorAll(".filter-btn");
+    const foodCards =
+        document.querySelectorAll(".food-card");
+
+    const filterButtons =
+        document.querySelectorAll(".filter-btn");
 
 
     filterButtons.forEach(button => {
@@ -266,7 +350,8 @@ function filterFood(category) {
 
     foodCards.forEach(card => {
 
-        const cardCategory = card.dataset.category;
+        const cardCategory =
+            card.dataset.category;
 
 
         if (
@@ -294,13 +379,17 @@ function goToCheckout() {
 
     if (cart.length === 0) {
 
-        alert("Your cart is empty. Please add food items first.");
+        alert(
+            "Your cart is empty. Please add food items first."
+        );
 
         return;
     }
 
+
     const checkoutSection =
         document.getElementById("checkout");
+
 
     if (checkoutSection) {
 
@@ -322,67 +411,123 @@ const checkoutForm =
 
 if (checkoutForm) {
 
-    checkoutForm.addEventListener("submit", function(event) {
+    checkoutForm.addEventListener(
+        "submit",
+        function (event) {
 
-        event.preventDefault();
+            event.preventDefault();
 
 
-        if (cart.length === 0) {
+            if (cart.length === 0) {
 
-            alert("Please add items to your cart first.");
+                alert(
+                    "Please add items to your cart first."
+                );
 
-            return;
+                return;
+            }
+
+
+            const customerName =
+                document.getElementById("customer-name").value.trim();
+
+
+            const customerEmail =
+                document.getElementById("customer-email").value.trim();
+
+
+            const customerPhone =
+                document.getElementById("customer-phone").value.trim();
+
+
+            const customerAddress =
+                document.getElementById("customer-address").value.trim();
+
+
+            const deliveryTime =
+                document.getElementById("delivery-time").value;
+
+
+            const paymentMethod =
+                document.getElementById("payment-method").value;
+
+
+            if (
+                !customerName ||
+                !customerEmail ||
+                !customerPhone ||
+                !customerAddress ||
+                !deliveryTime ||
+                !paymentMethod
+            ) {
+
+                alert(
+                    "Please complete all checkout details."
+                );
+
+                return;
+            }
+
+
+            let paymentMessage = "";
+
+
+            if (paymentMethod === "upi") {
+
+                paymentMessage =
+                    "UPI payment simulation successful.";
+
+            } else if (paymentMethod === "card") {
+
+                paymentMessage =
+                    "Card payment simulation successful.";
+
+            } else {
+
+                paymentMessage =
+                    "Cash on Delivery selected.";
+
+            }
+
+
+            alert(
+                "Order placed successfully!\n\n" +
+                "Thank you, " +
+                customerName +
+                "!\n\n" +
+                "Delivery: " +
+                deliveryTime +
+                "\n" +
+                "Payment: " +
+                paymentMessage
+            );
+
+
+            cart = [];
+
+            saveCart();
+
+            updateCart();
+
+            checkoutForm.reset();
+
+
+            const tracking =
+                document.getElementById("order-tracking");
+
+
+            if (tracking) {
+
+                tracking.scrollIntoView({
+                    behavior: "smooth"
+                });
+
+                startOrderTracking();
+
+            }
+
         }
-
-
-        const customerName =
-            document.getElementById("customer-name").value;
-
-        const paymentMethod =
-            document.getElementById("payment-method").value;
-
-        const deliveryTime =
-            document.getElementById("delivery-time").value;
-
-
-        if (!customerName ||
-            !paymentMethod ||
-            !deliveryTime) {
-
-            alert("Please complete all checkout details.");
-
-            return;
-        }
-
-
-        alert(
-            "Order placed successfully!\n\n" +
-            "Thank you, " +
-            customerName +
-            "!"
-        );
-
-
-        cart = [];
-
-        updateCart();
-
-        checkoutForm.reset();
-
-
-        const tracking =
-            document.getElementById("order-tracking");
-
-        if (tracking) {
-
-            tracking.scrollIntoView({
-                behavior: "smooth"
-            });
-
-        }
-
-    });
-
+    );
 }
 
 
@@ -396,34 +541,43 @@ const loginForm =
 
 if (loginForm) {
 
-    loginForm.addEventListener("submit", function(event) {
+    loginForm.addEventListener(
+        "submit",
+        function (event) {
 
-        event.preventDefault();
-
-
-        const email =
-            document.getElementById("login-email").value;
-
-        const password =
-            document.getElementById("login-password").value;
+            event.preventDefault();
 
 
-        if (!email || !password) {
+            const email =
+                document.getElementById("login-email")
+                    .value.trim();
 
-            alert("Please enter email and password.");
 
-            return;
+            const password =
+                document.getElementById("login-password")
+                    .value.trim();
+
+
+            if (!email || !password) {
+
+                alert(
+                    "Please enter email and password."
+                );
+
+                return;
+            }
+
+
+            alert(
+                "Login successful!\n\n" +
+                "Welcome to FreshBite."
+            );
+
+
+            loginForm.reset();
+
         }
-
-
-        alert(
-            "Login successful!\n\nWelcome to FreshBite."
-        );
-
-        loginForm.reset();
-
-    });
-
+    );
 }
 
 
@@ -437,41 +591,50 @@ const registerForm =
 
 if (registerForm) {
 
-    registerForm.addEventListener("submit", function(event) {
+    registerForm.addEventListener(
+        "submit",
+        function (event) {
 
-        event.preventDefault();
-
-
-        const name =
-            document.getElementById("register-name").value;
-
-        const email =
-            document.getElementById("register-email").value;
-
-        const password =
-            document.getElementById("register-password").value;
+            event.preventDefault();
 
 
-        if (!name || !email || !password) {
+            const name =
+                document.getElementById("register-name")
+                    .value.trim();
 
-            alert("Please fill all registration details.");
 
-            return;
+            const email =
+                document.getElementById("register-email")
+                    .value.trim();
+
+
+            const password =
+                document.getElementById("register-password")
+                    .value.trim();
+
+
+            if (!name || !email || !password) {
+
+                alert(
+                    "Please fill all registration details."
+                );
+
+                return;
+            }
+
+
+            alert(
+                "Account created successfully!\n\n" +
+                "Welcome, " +
+                name +
+                "!"
+            );
+
+
+            registerForm.reset();
+
         }
-
-
-        alert(
-            "Account created successfully!\n\n" +
-            "Welcome, " +
-            name +
-            "!"
-        );
-
-
-        registerForm.reset();
-
-    });
-
+    );
 }
 
 
@@ -485,21 +648,23 @@ const contactForm =
 
 if (contactForm) {
 
-    contactForm.addEventListener("submit", function(event) {
+    contactForm.addEventListener(
+        "submit",
+        function (event) {
 
-        event.preventDefault();
-
-
-        alert(
-            "Thank you for contacting FreshBite!\n\n" +
-            "We will get back to you soon."
-        );
+            event.preventDefault();
 
 
-        contactForm.reset();
+            alert(
+                "Thank you for contacting FreshBite!\n\n" +
+                "We will get back to you soon."
+            );
 
-    });
 
+            contactForm.reset();
+
+        }
+    );
 }
 
 
@@ -513,26 +678,30 @@ const restaurantButtons =
 
 restaurantButtons.forEach(button => {
 
-    button.addEventListener("click", function() {
+    button.addEventListener(
+        "click",
+        function () {
 
-        const menuSection =
-            document.getElementById("menu");
+            const menuSection =
+                document.getElementById("menu");
 
-        if (menuSection) {
 
-            menuSection.scrollIntoView({
-                behavior: "smooth"
-            });
+            if (menuSection) {
+
+                menuSection.scrollIntoView({
+                    behavior: "smooth"
+                });
+
+            }
 
         }
-
-    });
+    );
 
 });
 
 
 /* ============================================
-   ORDER TRACKING SIMULATION
+   ORDER TRACKING
 ============================================ */
 
 function startOrderTracking() {
@@ -541,32 +710,45 @@ function startOrderTracking() {
         document.querySelectorAll(".tracking-step");
 
 
-    let currentStep = 0;
-
-
-    function activateNextStep() {
-
-        if (currentStep >= trackingSteps.length) {
-            return;
-        }
-
-
-        trackingSteps[currentStep]
-            .classList.add("active");
-
-
-        currentStep++;
-
+    if (trackingSteps.length === 0) {
+        return;
     }
 
 
-    activateNextStep();
+    trackingSteps.forEach((step, index) => {
+
+        if (index === 0) {
+
+            step.classList.add("active");
+
+        } else {
+
+            step.classList.remove("active");
+
+        }
+
+    });
+
+
+    let currentStep = 1;
 
 
     const interval =
-        setInterval(function() {
+        setInterval(function () {
 
-            activateNextStep();
+            if (currentStep >= trackingSteps.length) {
+
+                clearInterval(interval);
+
+                return;
+            }
+
+
+            trackingSteps[currentStep]
+                .classList.add("active");
+
+
+            currentStep++;
 
 
             if (currentStep >= trackingSteps.length) {
@@ -576,7 +758,6 @@ function startOrderTracking() {
             }
 
         }, 3000);
-
 }
 
 
