@@ -1,3 +1,4 @@
+```javascript
 /* ============================================
    FRESHBITE - ONLINE FOOD ORDERING
    JAVASCRIPT
@@ -149,8 +150,9 @@ function displayFood(items) {
     const foodContainer =
         document.getElementById("foodContainer");
 
-    foodContainer.innerHTML = "";
+    if (!foodContainer) return;
 
+    foodContainer.innerHTML = "";
 
     if (items.length === 0) {
 
@@ -160,17 +162,17 @@ function displayFood(items) {
         return;
     }
 
-
     items.forEach(item => {
 
-        const card = document.createElement("div");
+        const card =
+            document.createElement("div");
 
         card.className = "food-card";
 
-
         card.innerHTML = `
 
-            <img src="${item.image}" alt="${item.name}">
+            <img src="${item.image}"
+                 alt="${item.name}">
 
             <div class="food-info">
 
@@ -185,9 +187,11 @@ function displayFood(items) {
                     </span>
 
                     <span class="diet-tag ${item.dietary}">
-                        ${item.dietary === "veg"
-                            ? "🟢 Veg"
-                            : "🔴 Non-Veg"}
+                        ${
+                            item.dietary === "veg"
+                                ? "🟢 Veg"
+                                : "🔴 Non-Veg"
+                        }
                     </span>
 
                 </div>
@@ -201,9 +205,7 @@ function displayFood(items) {
                 </button>
 
             </div>
-
         `;
-
 
         foodContainer.appendChild(card);
 
@@ -229,24 +231,21 @@ function filterFood(category) {
 
         displayFood(foodItems);
 
-        return;
+    } else {
+
+        const filteredItems =
+            foodItems.filter(item =>
+                item.category === category
+            );
+
+        displayFood(filteredItems);
     }
-
-
-    const filteredItems =
-        foodItems.filter(item =>
-            item.category === category
-        );
-
-
-    displayFood(filteredItems);
 
     document
         .getElementById("menu")
         .scrollIntoView({
             behavior: "smooth"
         });
-
 }
 
 
@@ -257,15 +256,32 @@ function filterFood(category) {
 function filterDiet(diet) {
 
     const buttons =
-        document.querySelectorAll(".diet-filters button");
-
+        document.querySelectorAll(
+            ".diet-filters button"
+        );
 
     buttons.forEach(button =>
         button.classList.remove("active")
     );
 
+    /* Find clicked button safely */
+    buttons.forEach(button => {
 
-    event.target.classList.add("active");
+        if (
+            (diet === "all" &&
+             button.textContent.trim() === "All") ||
+
+            (diet === "veg" &&
+             button.textContent.includes("Veg") &&
+             !button.textContent.includes("Non")) ||
+
+            (diet === "nonveg" &&
+             button.textContent.includes("Non-Veg"))
+        ) {
+            button.classList.add("active");
+        }
+
+    });
 
 
     if (diet === "all") {
@@ -280,7 +296,6 @@ function filterDiet(diet) {
         foodItems.filter(item =>
             item.dietary === diet
         );
-
 
     displayFood(filteredItems);
 
@@ -297,6 +312,8 @@ function addToCart(itemId) {
         foodItems.find(food =>
             food.id === itemId
         );
+
+    if (!item) return;
 
 
     const existingItem =
@@ -321,7 +338,6 @@ function addToCart(itemId) {
 
     updateCart();
 
-
     alert(`${item.name} added to cart!`);
 
 }
@@ -336,9 +352,20 @@ function updateCart() {
     const cartContainer =
         document.getElementById("cartItems");
 
-
     const cartCount =
         document.getElementById("cartCount");
+
+    const subtotalElement =
+        document.getElementById("subtotal");
+
+    const deliveryFeeElement =
+        document.getElementById("deliveryFee");
+
+    const totalPriceElement =
+        document.getElementById("totalPrice");
+
+
+    if (!cartContainer) return;
 
 
     cartContainer.innerHTML = "";
@@ -371,7 +398,6 @@ function updateCart() {
         const cartItem =
             document.createElement("div");
 
-
         cartItem.className =
             "cart-item";
 
@@ -392,13 +418,17 @@ function updateCart() {
 
             <div class="quantity-controls">
 
-                <button onclick="changeQuantity(${item.id}, -1)">
+                <button
+                    onclick="changeQuantity(${item.id}, -1)">
                     -
                 </button>
 
-                <span>${item.quantity}</span>
+                <span>
+                    ${item.quantity}
+                </span>
 
-                <button onclick="changeQuantity(${item.id}, 1)">
+                <button
+                    onclick="changeQuantity(${item.id}, 1)">
                     +
                 </button>
 
@@ -425,25 +455,40 @@ function updateCart() {
     });
 
 
-    cartCount.textContent =
-        totalQuantity;
+    if (cartCount) {
+
+        cartCount.textContent =
+            totalQuantity;
+
+    }
 
 
-    document.getElementById("subtotal")
-        .textContent = `₹${subtotal}`;
+    if (subtotalElement) {
+
+        subtotalElement.textContent =
+            `₹${subtotal}`;
+
+    }
 
 
     const deliveryFee =
         cart.length > 0 ? 40 : 0;
 
 
-    document.getElementById("deliveryFee")
-        .textContent = `₹${deliveryFee}`;
+    if (deliveryFeeElement) {
+
+        deliveryFeeElement.textContent =
+            `₹${deliveryFee}`;
+
+    }
 
 
-    document.getElementById("totalPrice")
-        .textContent =
-        `₹${subtotal + deliveryFee}`;
+    if (totalPriceElement) {
+
+        totalPriceElement.textContent =
+            `₹${subtotal + deliveryFee}`;
+
+    }
 
 }
 
@@ -458,7 +503,6 @@ function changeQuantity(itemId, change) {
         cart.find(food =>
             food.id === itemId
         );
-
 
     if (!item) return;
 
@@ -492,7 +536,6 @@ function removeFromCart(itemId) {
             item.id !== itemId
         );
 
-
     updateCart();
 
 }
@@ -506,116 +549,126 @@ function goToCheckout() {
 
     if (cart.length === 0) {
 
-        alert("Your cart is empty. Please add some food first!");
+        alert(
+            "Your cart is empty. Please add some food first!"
+        );
 
         return;
     }
+
 
     document
         .getElementById("checkout")
         .scrollIntoView({
             behavior: "smooth"
         });
+
 }
 
-
-
-
-
-        /* Show order placed popup */
-
-        document
-            .getElementById("successPopup")
-            .style.display = "flex";
-
-
-        /* Clear cart */
-
-        cart = [];
-
-        updateCart();
-
-
-        /* Clear checkout form */
-
-        this.reset();
-
-
-        /* Start order tracking */
-
-        startOrderTracking();
-
-
-        /* Go to tracking after 1 second */
-
-        setTimeout(function() {
-
-            document
-                .getElementById("tracking")
-                .scrollIntoView({
-                    behavior: "smooth"
-                });
-
-        }, 1000);
-
-    });
 
 /* ============================================
    PLACE ORDER
 ============================================ */
 
-document
-    .getElementById("checkoutForm")
-    .addEventListener("submit", function(event) {
-
-        event.preventDefault();
+const checkoutForm =
+    document.getElementById("checkoutForm");
 
 
-        if (cart.length === 0) {
+if (checkoutForm) {
 
-            alert("Your cart is empty!");
+    checkoutForm.addEventListener(
+        "submit",
+        function(event) {
 
-            return;
-        }
-
-
-        /* Show success popup */
-
-        document
-            .getElementById("successPopup")
-            .style.display = "flex";
+            event.preventDefault();
 
 
-        /* Clear cart */
+            if (cart.length === 0) {
 
-        cart = [];
+                alert(
+                    "Your cart is empty!"
+                );
 
-        updateCart();
-
-
-        /* Reset checkout form */
-
-        this.reset();
+                return;
+            }
 
 
-        /* Start order tracking */
+            /* Generate order ID */
 
-        startOrderTracking();
+            const orderId =
+                "FB" +
+                Math.floor(
+                    1000 + Math.random() * 9000
+                );
 
-
-        /* Go to tracking section */
-
-        setTimeout(function() {
 
             document
-                .getElementById("tracking")
-                .scrollIntoView({
-                    behavior: "smooth"
-                });
+                .getElementById("trackingOrderId")
+                .textContent =
+                `Order #${orderId}`;
 
-        }, 1000);
 
-    });
+            /* Get delivery time */
+
+            const selectedTime =
+                document.getElementById(
+                    "deliveryTime"
+                ).value;
+
+
+            if (selectedTime) {
+
+                document
+                    .getElementById(
+                        "deliveryTimeText"
+                    )
+                    .textContent =
+                    `Estimated: ${selectedTime}`;
+
+            }
+
+
+            /* Show success popup */
+
+            document
+                .getElementById("successPopup")
+                .style.display = "flex";
+
+
+            /* Clear cart */
+
+            cart = [];
+
+            updateCart();
+
+
+            /* Reset checkout form */
+
+            checkoutForm.reset();
+
+
+            /* Start order tracking */
+
+            startOrderTracking();
+
+
+            /* Go to tracking section */
+
+            setTimeout(function() {
+
+                document
+                    .getElementById("tracking")
+                    .scrollIntoView({
+                        behavior: "smooth"
+                    });
+
+            }, 1000);
+
+        }
+    );
+
+}
+
 
 /* ============================================
    CLOSE POPUP
@@ -623,9 +676,14 @@ document
 
 function closePopup() {
 
-    document
-        .getElementById("successPopup")
-        .style.display = "none";
+    const popup =
+        document.getElementById("successPopup");
+
+    if (popup) {
+
+        popup.style.display = "none";
+
+    }
 
 }
 
@@ -634,53 +692,77 @@ function closePopup() {
    LOGIN
 ============================================ */
 
-document
-    .getElementById("loginForm")
-    .addEventListener("submit", function(event) {
-
-        event.preventDefault();
+const loginForm =
+    document.getElementById("loginForm");
 
 
-        const email =
-            document.getElementById("email").value;
+if (loginForm) {
+
+    loginForm.addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
 
 
-        document
-            .getElementById("loginMessage")
-            .textContent =
-            `Welcome! Logged in as ${email}`;
+            const email =
+                document.getElementById(
+                    "email"
+                ).value;
 
-        this.reset();
 
-    });
+            const loginMessage =
+                document.getElementById(
+                    "loginMessage"
+                );
+
+
+            if (loginMessage) {
+
+                loginMessage.textContent =
+                    `Welcome! Logged in as ${email}`;
+
+            }
+
+
+            loginForm.reset();
+
+        }
+    );
+
+}
 
 
 /* ============================================
    CONTACT FORM
 ============================================ */
 
-document
-    .getElementById("contactForm")
-    .addEventListener("submit", function(event) {
-
-        event.preventDefault();
+const contactForm =
+    document.getElementById("contactForm");
 
 
-        alert(
-            "Thank you! Your message has been sent successfully."
-        );
+if (contactForm) {
+
+    contactForm.addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
 
 
-        this.reset();
+            alert(
+                "Thank you! Your message has been sent successfully."
+            );
 
-    });
+
+            contactForm.reset();
+
+        }
+    );
+
+}
 
 
-/* ============================================
-   INITIAL CART
-============================================ */
-
-updateCart();
 /* ============================================
    ORDER TRACKING
 ============================================ */
@@ -699,13 +781,19 @@ let orderStatus = 1;
 function updateOrderTracking() {
 
     const statusText =
-        document.getElementById("trackingStatus");
+        document.getElementById(
+            "trackingStatus"
+        );
 
     const locationText =
-        document.getElementById("locationText");
+        document.getElementById(
+            "locationText"
+        );
 
     const bike =
-        document.getElementById("deliveryBike");
+        document.getElementById(
+            "deliveryBike"
+        );
 
 
     const step1 =
@@ -731,21 +819,28 @@ function updateOrderTracking() {
         document.getElementById("line3");
 
 
+    if (
+        !statusText ||
+        !locationText ||
+        !bike ||
+        !step1 ||
+        !step2 ||
+        !step3 ||
+        !step4
+    ) {
+        return;
+    }
+
+
     /* RESET */
 
     step1.classList.remove("active");
-
     step2.classList.remove("active");
-
     step3.classList.remove("active");
-
     step4.classList.remove("active");
 
-
     line1.classList.remove("active");
-
     line2.classList.remove("active");
-
     line3.classList.remove("active");
 
 
@@ -763,7 +858,9 @@ function updateOrderTracking() {
         locationText.textContent =
             "Restaurant Kitchen";
 
-        bike.style.left = "10%";
+        bike.style.left =
+            "10%";
+
     }
 
 
@@ -785,7 +882,9 @@ function updateOrderTracking() {
         locationText.textContent =
             "Restaurant Kitchen - Food is being prepared";
 
-        bike.style.left = "30%";
+        bike.style.left =
+            "30%";
+
     }
 
 
@@ -811,7 +910,9 @@ function updateOrderTracking() {
         locationText.textContent =
             "Delivery Partner is on the way";
 
-        bike.style.left = "60%";
+        bike.style.left =
+            "60%";
+
     }
 
 
@@ -841,7 +942,9 @@ function updateOrderTracking() {
         locationText.textContent =
             "Your order has been delivered";
 
-        bike.style.left = "85%";
+        bike.style.left =
+            "85%";
+
     }
 
 }
@@ -858,7 +961,7 @@ function startOrderTracking() {
     updateOrderTracking();
 
 
-    /* 5 seconds */
+    /* After 5 seconds → Preparing */
 
     setTimeout(function() {
 
@@ -869,7 +972,7 @@ function startOrderTracking() {
     }, 5000);
 
 
-    /* 10 seconds */
+    /* After 10 seconds → Out for Delivery */
 
     setTimeout(function() {
 
@@ -880,7 +983,7 @@ function startOrderTracking() {
     }, 10000);
 
 
-    /* 15 seconds */
+    /* After 15 seconds → Delivered */
 
     setTimeout(function() {
 
@@ -891,3 +994,18 @@ function startOrderTracking() {
     }, 15000);
 
 }
+
+
+/* ============================================
+   INITIAL CART
+============================================ */
+
+updateCart();
+
+
+/* ============================================
+   INITIAL ORDER TRACKING
+============================================ */
+
+updateOrderTracking();
+```
