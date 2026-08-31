@@ -512,14 +512,58 @@ function goToCheckout() {
     }
 
 
-    document
-        .getElementById("checkout")
-        .scrollIntoView({
-            behavior: "smooth"
-        });
+   document
+    .getElementById("checkoutForm")
+    .addEventListener("submit", function(event) {
 
-}
+        event.preventDefault();
 
+
+        if (cart.length === 0) {
+
+            alert("Your cart is empty!");
+
+            return;
+        }
+
+
+        /* Show order placed popup */
+
+        document
+            .getElementById("successPopup")
+            .style.display = "flex";
+
+
+        /* Clear cart */
+
+        cart = [];
+
+        updateCart();
+
+
+        /* Clear checkout form */
+
+        this.reset();
+
+
+        /* Start order tracking */
+
+        startOrderTracking();
+
+
+        /* Go to tracking after 1 second */
+
+        setTimeout(function() {
+
+            document
+                .getElementById("tracking")
+                .scrollIntoView({
+                    behavior: "smooth"
+                });
+
+        }, 1000);
+
+    });
 
 /* ============================================
    PLACE ORDER
@@ -619,3 +663,213 @@ document
 ============================================ */
 
 updateCart();
+/* ============================================
+   ORDER TRACKING
+============================================ */
+
+let orderStatus = 1;
+
+
+/*
+    1 = Order Placed
+    2 = Preparing
+    3 = Out for Delivery
+    4 = Delivered
+*/
+
+
+function updateOrderTracking() {
+
+    const statusText =
+        document.getElementById("trackingStatus");
+
+    const locationText =
+        document.getElementById("locationText");
+
+    const bike =
+        document.getElementById("deliveryBike");
+
+
+    const step1 =
+        document.getElementById("step1");
+
+    const step2 =
+        document.getElementById("step2");
+
+    const step3 =
+        document.getElementById("step3");
+
+    const step4 =
+        document.getElementById("step4");
+
+
+    const line1 =
+        document.getElementById("line1");
+
+    const line2 =
+        document.getElementById("line2");
+
+    const line3 =
+        document.getElementById("line3");
+
+
+    /* RESET */
+
+    step1.classList.remove("active");
+
+    step2.classList.remove("active");
+
+    step3.classList.remove("active");
+
+    step4.classList.remove("active");
+
+
+    line1.classList.remove("active");
+
+    line2.classList.remove("active");
+
+    line3.classList.remove("active");
+
+
+    /* ========================================
+       ORDER PLACED
+    ======================================== */
+
+    if (orderStatus === 1) {
+
+        step1.classList.add("active");
+
+        statusText.textContent =
+            "Order Placed";
+
+        locationText.textContent =
+            "Restaurant Kitchen";
+
+        bike.style.left = "10%";
+    }
+
+
+    /* ========================================
+       PREPARING
+    ======================================== */
+
+    else if (orderStatus === 2) {
+
+        step1.classList.add("active");
+
+        step2.classList.add("active");
+
+        line1.classList.add("active");
+
+        statusText.textContent =
+            "Preparing your food";
+
+        locationText.textContent =
+            "Restaurant Kitchen - Food is being prepared";
+
+        bike.style.left = "30%";
+    }
+
+
+    /* ========================================
+       OUT FOR DELIVERY
+    ======================================== */
+
+    else if (orderStatus === 3) {
+
+        step1.classList.add("active");
+
+        step2.classList.add("active");
+
+        step3.classList.add("active");
+
+        line1.classList.add("active");
+
+        line2.classList.add("active");
+
+        statusText.textContent =
+            "Out for Delivery";
+
+        locationText.textContent =
+            "Delivery Partner is on the way";
+
+        bike.style.left = "60%";
+    }
+
+
+    /* ========================================
+       DELIVERED
+    ======================================== */
+
+    else if (orderStatus === 4) {
+
+        step1.classList.add("active");
+
+        step2.classList.add("active");
+
+        step3.classList.add("active");
+
+        step4.classList.add("active");
+
+        line1.classList.add("active");
+
+        line2.classList.add("active");
+
+        line3.classList.add("active");
+
+        statusText.textContent =
+            "Delivered";
+
+        locationText.textContent =
+            "Your order has been delivered";
+
+        bike.style.left = "85%";
+    }
+
+}
+
+
+/* ============================================
+   START ORDER TRACKING
+============================================ */
+
+function startOrderTracking() {
+
+    orderStatus = 1;
+
+    updateOrderTracking();
+
+
+    /* 5 seconds */
+
+    setTimeout(function() {
+
+        orderStatus = 2;
+
+        updateOrderTracking();
+
+    }, 5000);
+
+
+    /* 10 seconds */
+
+    setTimeout(function() {
+
+        orderStatus = 3;
+
+        updateOrderTracking();
+
+    }, 10000);
+
+
+    /* 15 seconds */
+
+    setTimeout(function() {
+
+        orderStatus = 4;
+
+        updateOrderTracking();
+
+    }, 15000);
+
+}
