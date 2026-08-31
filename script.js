@@ -511,20 +511,15 @@ function goToCheckout() {
         return;
     }
 
+    document
+        .getElementById("checkout")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+}
 
-   document
-    .getElementById("checkoutForm")
-    .addEventListener("submit", function(event) {
-
-        event.preventDefault();
 
 
-        if (cart.length === 0) {
-
-            alert("Your cart is empty!");
-
-            return;
-        }
 
 
         /* Show order placed popup */
@@ -584,20 +579,43 @@ document
         }
 
 
+        /* Show success popup */
+
         document
             .getElementById("successPopup")
             .style.display = "flex";
 
+
+        /* Clear cart */
 
         cart = [];
 
         updateCart();
 
 
+        /* Reset checkout form */
+
         this.reset();
 
-    });
 
+        /* Start order tracking */
+
+        startOrderTracking();
+
+
+        /* Go to tracking section */
+
+        setTimeout(function() {
+
+            document
+                .getElementById("tracking")
+                .scrollIntoView({
+                    behavior: "smooth"
+                });
+
+        }, 1000);
+
+    });
 
 /* ============================================
    CLOSE POPUP
