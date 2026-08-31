@@ -24,14 +24,17 @@
         🍕 <span>Fresh</span>Bite
     </div>
 
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#menu">Menu</a>
-        <a href="#restaurants">Restaurants</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-        <a href="#account">Account</a>
-    </nav>
+<nav>
+     
+    <a href="#home">Home</a>
+    <a href="#menu">Menu</a>
+    <a href="#restaurants">Restaurants</a>
+    <a href="#tracking">Track Order</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+    <a href="#account">Account</a>
+</nav>
+ 
 
     <a href="#cart" class="cart-btn">
         <i class="fas fa-shopping-cart"></i>
@@ -364,6 +367,186 @@
         </button>
 
     </form>
+
+</section>
+
+    <!-- =========================
+     ORDER TRACKING
+========================= -->
+
+<section id="tracking" class="tracking-section">
+
+    <div class="section-title">
+
+        <p>ORDER TRACKING</p>
+
+        <h2>Track Your Order</h2>
+
+    </div>
+
+
+    <div class="tracking-card">
+
+        <!-- ORDER INFORMATION -->
+
+        <div class="tracking-header">
+
+            <div>
+
+                <h3 id="trackingOrderId">
+                    Order #FB1001
+                </h3>
+
+                <p id="trackingStatus">
+                    Order Placed
+                </p>
+
+            </div>
+
+
+            <span id="deliveryTimeText">
+                Estimated: 35 mins
+            </span>
+
+        </div>
+
+
+        <!-- ORDER STATUS -->
+
+        <div class="tracking-progress">
+
+
+            <!-- STEP 1 -->
+
+            <div class="tracking-step active"
+                 id="step1">
+
+                <div class="tracking-icon">
+                    ✓
+                </div>
+
+                <p>
+                    Order Placed
+                </p>
+
+            </div>
+
+
+            <div class="tracking-line"
+                 id="line1">
+            </div>
+
+
+            <!-- STEP 2 -->
+
+            <div class="tracking-step"
+                 id="step2">
+
+                <div class="tracking-icon">
+                    🍳
+                </div>
+
+                <p>
+                    Preparing
+                </p>
+
+            </div>
+
+
+            <div class="tracking-line"
+                 id="line2">
+            </div>
+
+
+            <!-- STEP 3 -->
+
+            <div class="tracking-step"
+                 id="step3">
+
+                <div class="tracking-icon">
+                    🛵
+                </div>
+
+                <p>
+                    Out for Delivery
+                </p>
+
+            </div>
+
+
+            <div class="tracking-line"
+                 id="line3">
+            </div>
+
+
+            <!-- STEP 4 -->
+
+            <div class="tracking-step"
+                 id="step4">
+
+                <div class="tracking-icon">
+                    🏠
+                </div>
+
+                <p>
+                    Delivered
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- CURRENT LOCATION -->
+
+        <div class="location-box">
+
+            <div class="location-icon">
+                📍
+            </div>
+
+            <div>
+
+                <h3>
+                    Current Location
+                </h3>
+
+                <p id="locationText">
+                    Restaurant Kitchen
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- SIMULATED MAP -->
+
+        <div class="fake-map">
+
+            <div class="map-road road1"></div>
+
+            <div class="map-road road2"></div>
+
+
+            <div class="restaurant-location">
+                🍽️
+            </div>
+
+
+            <div id="deliveryBike"
+                 class="delivery-bike">
+                🛵
+            </div>
+
+
+            <div class="home-location">
+                🏠
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
 
