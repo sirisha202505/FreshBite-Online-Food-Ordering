@@ -150,8 +150,6 @@ function displayFood(items) {
     const foodContainer =
         document.getElementById("foodContainer");
 
-    if (!foodContainer) return;
-
     foodContainer.innerHTML = "";
 
     if (items.length === 0) {
@@ -171,8 +169,7 @@ function displayFood(items) {
 
         card.innerHTML = `
 
-            <img src="${item.image}"
-                 alt="${item.name}">
+            <img src="${item.image}" alt="${item.name}">
 
             <div class="food-info">
 
@@ -187,17 +184,16 @@ function displayFood(items) {
                     </span>
 
                     <span class="diet-tag ${item.dietary}">
-                        ${
-                            item.dietary === "veg"
-                                ? "🟢 Veg"
-                                : "🔴 Non-Veg"
-                        }
+                        ${item.dietary === "veg"
+                            ? "🟢 Veg"
+                            : "🔴 Non-Veg"}
                     </span>
 
                 </div>
 
-                <button class="add-btn"
-                        onclick="addToCart(${item.id})">
+                <button
+                    class="add-btn"
+                    onclick="addToCart(${item.id})">
 
                     <i class="fas fa-cart-plus"></i>
                     Add to Cart
@@ -205,6 +201,7 @@ function displayFood(items) {
                 </button>
 
             </div>
+
         `;
 
         foodContainer.appendChild(card);
@@ -231,21 +228,28 @@ function filterFood(category) {
 
         displayFood(foodItems);
 
-    } else {
+        document
+            .getElementById("menu")
+            .scrollIntoView({
+                behavior: "smooth"
+            });
 
-        const filteredItems =
-            foodItems.filter(item =>
-                item.category === category
-            );
-
-        displayFood(filteredItems);
+        return;
     }
+
+    const filteredItems =
+        foodItems.filter(item =>
+            item.category === category
+        );
+
+    displayFood(filteredItems);
 
     document
         .getElementById("menu")
         .scrollIntoView({
             behavior: "smooth"
         });
+
 }
 
 
@@ -264,25 +268,9 @@ function filterDiet(diet) {
         button.classList.remove("active")
     );
 
-    /* Find clicked button safely */
-    buttons.forEach(button => {
-
-        if (
-            (diet === "all" &&
-             button.textContent.trim() === "All") ||
-
-            (diet === "veg" &&
-             button.textContent.includes("Veg") &&
-             !button.textContent.includes("Non")) ||
-
-            (diet === "nonveg" &&
-             button.textContent.includes("Non-Veg"))
-        ) {
-            button.classList.add("active");
-        }
-
-    });
-
+    if (event && event.target) {
+        event.target.classList.add("active");
+    }
 
     if (diet === "all") {
 
@@ -290,7 +278,6 @@ function filterDiet(diet) {
 
         return;
     }
-
 
     const filteredItems =
         foodItems.filter(item =>
@@ -315,12 +302,10 @@ function addToCart(itemId) {
 
     if (!item) return;
 
-
     const existingItem =
         cart.find(food =>
             food.id === itemId
         );
-
 
     if (existingItem) {
 
@@ -334,7 +319,6 @@ function addToCart(itemId) {
         });
 
     }
-
 
     updateCart();
 
@@ -355,36 +339,20 @@ function updateCart() {
     const cartCount =
         document.getElementById("cartCount");
 
-    const subtotalElement =
-        document.getElementById("subtotal");
-
-    const deliveryFeeElement =
-        document.getElementById("deliveryFee");
-
-    const totalPriceElement =
-        document.getElementById("totalPrice");
-
-
-    if (!cartContainer) return;
-
-
     cartContainer.innerHTML = "";
 
-
     let subtotal = 0;
-
     let totalQuantity = 0;
-
 
     if (cart.length === 0) {
 
-        cartContainer.innerHTML =
-            `<p class="empty-cart">
+        cartContainer.innerHTML = `
+            <p class="empty-cart">
                 Your cart is empty 🛒
-            </p>`;
+            </p>
+        `;
 
     }
-
 
     cart.forEach(item => {
 
@@ -394,18 +362,17 @@ function updateCart() {
         totalQuantity +=
             item.quantity;
 
-
         const cartItem =
             document.createElement("div");
 
         cartItem.className =
             "cart-item";
 
-
         cartItem.innerHTML = `
 
-            <img src="${item.image}"
-                 alt="${item.name}">
+            <img
+                src="${item.image}"
+                alt="${item.name}">
 
             <div class="cart-item-info">
 
@@ -415,7 +382,6 @@ function updateCart() {
 
             </div>
 
-
             <div class="quantity-controls">
 
                 <button
@@ -423,9 +389,7 @@ function updateCart() {
                     -
                 </button>
 
-                <span>
-                    ${item.quantity}
-                </span>
+                <span>${item.quantity}</span>
 
                 <button
                     onclick="changeQuantity(${item.id}, 1)">
@@ -434,14 +398,13 @@ function updateCart() {
 
             </div>
 
-
             <strong>
                 ₹${item.price * item.quantity}
             </strong>
 
-
-            <button class="remove-btn"
-                    onclick="removeFromCart(${item.id})">
+            <button
+                class="remove-btn"
+                onclick="removeFromCart(${item.id})">
 
                 <i class="fas fa-trash"></i>
 
@@ -449,46 +412,33 @@ function updateCart() {
 
         `;
 
-
         cartContainer.appendChild(cartItem);
 
     });
 
 
-    if (cartCount) {
-
-        cartCount.textContent =
-            totalQuantity;
-
-    }
+    cartCount.textContent =
+        totalQuantity;
 
 
-    if (subtotalElement) {
-
-        subtotalElement.textContent =
-            `₹${subtotal}`;
-
-    }
+    document
+        .getElementById("subtotal")
+        .textContent = `₹${subtotal}`;
 
 
     const deliveryFee =
         cart.length > 0 ? 40 : 0;
 
 
-    if (deliveryFeeElement) {
-
-        deliveryFeeElement.textContent =
-            `₹${deliveryFee}`;
-
-    }
+    document
+        .getElementById("deliveryFee")
+        .textContent = `₹${deliveryFee}`;
 
 
-    if (totalPriceElement) {
-
-        totalPriceElement.textContent =
-            `₹${subtotal + deliveryFee}`;
-
-    }
+    document
+        .getElementById("totalPrice")
+        .textContent =
+        `₹${subtotal + deliveryFee}`;
 
 }
 
@@ -506,9 +456,7 @@ function changeQuantity(itemId, change) {
 
     if (!item) return;
 
-
     item.quantity += change;
-
 
     if (item.quantity <= 0) {
 
@@ -518,7 +466,6 @@ function changeQuantity(itemId, change) {
             );
 
     }
-
 
     updateCart();
 
@@ -542,7 +489,7 @@ function removeFromCart(itemId) {
 
 
 /* ============================================
-   CHECKOUT
+   GO TO CHECKOUT
 ============================================ */
 
 function goToCheckout() {
@@ -555,7 +502,6 @@ function goToCheckout() {
 
         return;
     }
-
 
     document
         .getElementById("checkout")
@@ -570,104 +516,57 @@ function goToCheckout() {
    PLACE ORDER
 ============================================ */
 
-const checkoutForm =
-    document.getElementById("checkoutForm");
+document
+    .getElementById("checkoutForm")
+    .addEventListener("submit", function(event) {
 
+        event.preventDefault();
 
-if (checkoutForm) {
+        if (cart.length === 0) {
 
-    checkoutForm.addEventListener(
-        "submit",
-        function(event) {
+            alert("Your cart is empty!");
 
-            event.preventDefault();
-
-
-            if (cart.length === 0) {
-
-                alert(
-                    "Your cart is empty!"
-                );
-
-                return;
-            }
-
-
-            /* Generate order ID */
-
-            const orderId =
-                "FB" +
-                Math.floor(
-                    1000 + Math.random() * 9000
-                );
-
-
-            document
-                .getElementById("trackingOrderId")
-                .textContent =
-                `Order #${orderId}`;
-
-
-            /* Get delivery time */
-
-            const selectedTime =
-                document.getElementById(
-                    "deliveryTime"
-                ).value;
-
-
-            if (selectedTime) {
-
-                document
-                    .getElementById(
-                        "deliveryTimeText"
-                    )
-                    .textContent =
-                    `Estimated: ${selectedTime}`;
-
-            }
-
-
-            /* Show success popup */
-
-            document
-                .getElementById("successPopup")
-                .style.display = "flex";
-
-
-            /* Clear cart */
-
-            cart = [];
-
-            updateCart();
-
-
-            /* Reset checkout form */
-
-            checkoutForm.reset();
-
-
-            /* Start order tracking */
-
-            startOrderTracking();
-
-
-            /* Go to tracking section */
-
-            setTimeout(function() {
-
-                document
-                    .getElementById("tracking")
-                    .scrollIntoView({
-                        behavior: "smooth"
-                    });
-
-            }, 1000);
-
+            return;
         }
-    );
 
-}
+
+        /* Show success popup */
+
+        document
+            .getElementById("successPopup")
+            .style.display = "flex";
+
+
+        /* Clear cart */
+
+        cart = [];
+
+        updateCart();
+
+
+        /* Reset checkout form */
+
+        this.reset();
+
+
+        /* Start order tracking */
+
+        startOrderTracking();
+
+
+        /* Go to tracking section */
+
+        setTimeout(function() {
+
+            document
+                .getElementById("tracking")
+                .scrollIntoView({
+                    behavior: "smooth"
+                });
+
+        }, 1000);
+
+    });
 
 
 /* ============================================
@@ -676,14 +575,9 @@ if (checkoutForm) {
 
 function closePopup() {
 
-    const popup =
-        document.getElementById("successPopup");
-
-    if (popup) {
-
-        popup.style.display = "none";
-
-    }
+    document
+        .getElementById("successPopup")
+        .style.display = "none";
 
 }
 
@@ -692,75 +586,42 @@ function closePopup() {
    LOGIN
 ============================================ */
 
-const loginForm =
-    document.getElementById("loginForm");
+document
+    .getElementById("loginForm")
+    .addEventListener("submit", function(event) {
 
+        event.preventDefault();
 
-if (loginForm) {
+        const email =
+            document.getElementById("email").value;
 
-    loginForm.addEventListener(
-        "submit",
-        function(event) {
+        document
+            .getElementById("loginMessage")
+            .textContent =
+            `Welcome! Logged in as ${email}`;
 
-            event.preventDefault();
+        this.reset();
 
-
-            const email =
-                document.getElementById(
-                    "email"
-                ).value;
-
-
-            const loginMessage =
-                document.getElementById(
-                    "loginMessage"
-                );
-
-
-            if (loginMessage) {
-
-                loginMessage.textContent =
-                    `Welcome! Logged in as ${email}`;
-
-            }
-
-
-            loginForm.reset();
-
-        }
-    );
-
-}
+    });
 
 
 /* ============================================
    CONTACT FORM
 ============================================ */
 
-const contactForm =
-    document.getElementById("contactForm");
+document
+    .getElementById("contactForm")
+    .addEventListener("submit", function(event) {
 
+        event.preventDefault();
 
-if (contactForm) {
+        alert(
+            "Thank you! Your message has been sent successfully."
+        );
 
-    contactForm.addEventListener(
-        "submit",
-        function(event) {
+        this.reset();
 
-            event.preventDefault();
-
-
-            alert(
-                "Thank you! Your message has been sent successfully."
-            );
-
-
-            contactForm.reset();
-
-        }
-    );
-
-}
+    });
 
 
 /* ============================================
@@ -781,19 +642,13 @@ let orderStatus = 1;
 function updateOrderTracking() {
 
     const statusText =
-        document.getElementById(
-            "trackingStatus"
-        );
+        document.getElementById("trackingStatus");
 
     const locationText =
-        document.getElementById(
-            "locationText"
-        );
+        document.getElementById("locationText");
 
     const bike =
-        document.getElementById(
-            "deliveryBike"
-        );
+        document.getElementById("deliveryBike");
 
 
     const step1 =
@@ -819,19 +674,6 @@ function updateOrderTracking() {
         document.getElementById("line3");
 
 
-    if (
-        !statusText ||
-        !locationText ||
-        !bike ||
-        !step1 ||
-        !step2 ||
-        !step3 ||
-        !step4
-    ) {
-        return;
-    }
-
-
     /* RESET */
 
     step1.classList.remove("active");
@@ -844,9 +686,7 @@ function updateOrderTracking() {
     line3.classList.remove("active");
 
 
-    /* ========================================
-       ORDER PLACED
-    ======================================== */
+    /* ORDER PLACED */
 
     if (orderStatus === 1) {
 
@@ -858,20 +698,16 @@ function updateOrderTracking() {
         locationText.textContent =
             "Restaurant Kitchen";
 
-        bike.style.left =
-            "10%";
+        bike.style.left = "10%";
 
     }
 
 
-    /* ========================================
-       PREPARING
-    ======================================== */
+    /* PREPARING */
 
     else if (orderStatus === 2) {
 
         step1.classList.add("active");
-
         step2.classList.add("active");
 
         line1.classList.add("active");
@@ -882,26 +718,20 @@ function updateOrderTracking() {
         locationText.textContent =
             "Restaurant Kitchen - Food is being prepared";
 
-        bike.style.left =
-            "30%";
+        bike.style.left = "30%";
 
     }
 
 
-    /* ========================================
-       OUT FOR DELIVERY
-    ======================================== */
+    /* OUT FOR DELIVERY */
 
     else if (orderStatus === 3) {
 
         step1.classList.add("active");
-
         step2.classList.add("active");
-
         step3.classList.add("active");
 
         line1.classList.add("active");
-
         line2.classList.add("active");
 
         statusText.textContent =
@@ -910,30 +740,22 @@ function updateOrderTracking() {
         locationText.textContent =
             "Delivery Partner is on the way";
 
-        bike.style.left =
-            "60%";
+        bike.style.left = "60%";
 
     }
 
 
-    /* ========================================
-       DELIVERED
-    ======================================== */
+    /* DELIVERED */
 
     else if (orderStatus === 4) {
 
         step1.classList.add("active");
-
         step2.classList.add("active");
-
         step3.classList.add("active");
-
         step4.classList.add("active");
 
         line1.classList.add("active");
-
         line2.classList.add("active");
-
         line3.classList.add("active");
 
         statusText.textContent =
@@ -942,8 +764,7 @@ function updateOrderTracking() {
         locationText.textContent =
             "Your order has been delivered";
 
-        bike.style.left =
-            "85%";
+        bike.style.left = "85%";
 
     }
 
@@ -961,7 +782,7 @@ function startOrderTracking() {
     updateOrderTracking();
 
 
-    /* After 5 seconds → Preparing */
+    /* Preparing after 5 seconds */
 
     setTimeout(function() {
 
@@ -972,7 +793,7 @@ function startOrderTracking() {
     }, 5000);
 
 
-    /* After 10 seconds → Out for Delivery */
+    /* Out for Delivery after 10 seconds */
 
     setTimeout(function() {
 
@@ -983,7 +804,7 @@ function startOrderTracking() {
     }, 10000);
 
 
-    /* After 15 seconds → Delivered */
+    /* Delivered after 15 seconds */
 
     setTimeout(function() {
 
@@ -1001,11 +822,4 @@ function startOrderTracking() {
 ============================================ */
 
 updateCart();
-
-
-/* ============================================
-   INITIAL ORDER TRACKING
-============================================ */
-
-updateOrderTracking();
 ```
